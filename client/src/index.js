@@ -6,15 +6,15 @@ import deviceStore from './store/deviceStore';
 import typeStore from './store/typeStore';
 import userStore from './store/userStore';
 
-export const Context = createContext(null);
+export const Context = createContext();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Context.Provider value = {{
-    user: userStore,
-    device: deviceStore,
-    type: typeStore,
-    brand: brandStore
+    user: new userStore(),
+    device: new deviceStore(),
+    type: new typeStore(),
+    brand: new brandStore()
   }}>
     <App />
   </Context.Provider>
