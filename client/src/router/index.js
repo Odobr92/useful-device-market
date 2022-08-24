@@ -3,7 +3,7 @@ import DevicePage from "../pages/DevicePage";
 import Admin from "../pages/Admin";
 import Basket from "../pages/Basket";
 import Main from "../pages/Main";
-import { ADMIN_ROUTE, LOGIN_ROUTE, BASKET_ROUTE, DEVICE_ROUTE, MAIN_ROUTE } from "../utils/consts";
+import {REGISTRATION_ROUTE, ADMIN_ROUTE, LOGIN_ROUTE, BASKET_ROUTE, DEVICE_ROUTE, MAIN_ROUTE } from "../utils/consts";
 
 
 export const authRoutes = [
@@ -13,6 +13,7 @@ export const authRoutes = [
 
 export const publicRoutes = [
     {path: LOGIN_ROUTE, element: <Auth/>, exact: true},
+    {path: REGISTRATION_ROUTE, element: <Auth/>, exact: true},
     {path: MAIN_ROUTE, element: <Main/>, exact: true},
     {path: DEVICE_ROUTE + '/:id', element: <DevicePage/>, exact: true}
 ]
