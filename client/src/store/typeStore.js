@@ -9,14 +9,23 @@ export default class typeStore {
             {id: 5,	name: "Холодильники"},
             {id: 6,	name: "Телефоны"}
         ]
+        this._selectedType = {id:1, name:''};
         makeAutoObservable(this);
     }
 
-    setType( type){
+    setType(type){
         this._type = type;
+    }
+
+    setSelectedType(type){
+        this._selectedType = type;
     }
 
     get type(){
         return this._type;
+    }
+
+    get selectedType(){
+        return this._selectedType;
     }
 }

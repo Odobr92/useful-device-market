@@ -1,0 +1,12 @@
+.main {
+  display: flex;
+  flex-direction: row;
+}
+
+.card_item {
+  padding: 1%;
+  margin: 0.5%;
+  margin-top: 1.5%;
+  width: auto;
+  cursor:context-menu;
+}

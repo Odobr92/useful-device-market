@@ -5,7 +5,11 @@ export default class deviceStore {
         this._device = [
             {id: 1, name: "Xiaomi Mi Electric Scooter 1S", price: 20000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
             {id: 2, name: "Bosch Serie 4 VitaFresh", price: 65000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
-            {id: 3, name: "Apple iPhone 12 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 }
+            {id: 3, name: "Apple iPhone 12 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
+            {id: 4, name: "Apple iPhone 11 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
+            {id: 4, name: "Apple iPhone 11 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
+            {id: 4, name: "Apple iPhone 11 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
+            {id: 4, name: "Apple iPhone 11 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 }
         ]
         makeAutoObservable(this);
     }
