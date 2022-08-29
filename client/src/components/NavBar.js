@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Context } from '..';
-import { ADMIN_ROUTE, BASKET_ROUTE, MAIN_ROUTE } from '../utils/consts';
+import { ADMIN_ROUTE, BASKET_ROUTE, LOGIN_ROUTE, MAIN_ROUTE } from '../utils/consts';
 import '../styles/NavBar.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -20,7 +20,7 @@ const NavBar = observer( () => {
         </NavLink>
         {user.isAuth ?
           <Nav className="mr-auto">
-            <NavLink className="main_nav" to={BASKET_ROUTE}>
+            <NavLink className="main_nav" to={ADMIN_ROUTE}>
               Админ панель
             </NavLink>
             <NavLink className="main_nav" to={BASKET_ROUTE}>
@@ -32,7 +32,7 @@ const NavBar = observer( () => {
           </Nav>
         : 
           <Nav className="mr-auto">
-            <NavLink className="main_nav" to={ADMIN_ROUTE}>
+            <NavLink className="main_nav" to={LOGIN_ROUTE}>
               Авторизация
             </NavLink>
           </Nav>
