@@ -7,9 +7,9 @@ export default class deviceStore {
             {id: 2, name: "Bosch Serie 4 VitaFresh", price: 65000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
             {id: 3, name: "Apple iPhone 12 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
             {id: 4, name: "Apple iPhone 11 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
-            {id: 4, name: "Apple iPhone 11 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
-            {id: 4, name: "Apple iPhone 11 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
-            {id: 4, name: "Apple iPhone 11 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 }
+            {id: 5, name: "Apple iPhone 11 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
+            {id: 6, name: "Apple iPhone 11 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
+            {id: 7, name: "Apple iPhone 11 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 }
         ]
         makeAutoObservable(this);
     }

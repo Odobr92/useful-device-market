@@ -17,22 +17,19 @@ const DevicePage = () => {
   };
 
   const TestPrm = [
-    { name: 'Габариты', desctiption: '90x60x90' },
-    { name: 'Вес', desctiption: '45кг' },
-    { name: 'Габариты', desctiption: '90x60x90' },
-    { name: 'Вес', desctiption: '45кг' },
-    { name: 'Габариты', desctiption: '90x60x90' },
-    { name: 'Вес', desctiption: '45кг' },
-    { name: 'Габариты', desctiption: '90x60x90' },
-    { name: 'Вес', desctiption: '45кг' },
-    { name: 'Габариты', desctiption: '90x60x90' },
-    { name: 'Вес', desctiption: '45кг' },
-    { name: 'Габариты', desctiption: '90x60x90' },
-    { name: 'Вес', desctiption: '45кг' },
-    { name: 'Габариты', desctiption: '90x60x90' },
-    { name: 'Вес', desctiption: '45кг' },
-    { name: 'Габариты', desctiption: '90x60x90' },
-    { name: 'Вес', desctiption: '45кг' },
+    {id:1, name: 'Габариты', desctiption: '90x60x90' },
+    {id:2, name: 'Вес', desctiption: '45кг' },
+    {id:3, name: 'Габариты', desctiption: '90x60x90' },
+    {id:4, name: 'Вес', desctiption: '45кг' },
+    {id:5, name: 'Габариты', desctiption: '90x60x90' },
+    {id:6, name: 'Вес', desctiption: '45кг' },
+    {id:7, name: 'Габариты', desctiption: '90x60x90' },
+    {id:8, name: 'Вес', desctiption: '45кг' },
+    {id:9, name: 'Габариты', desctiption: '90x60x90' },
+    {id:10, name: 'Вес', desctiption: '45кг' },
+    {id:11, name: 'Габариты', desctiption: '90x60x90' },
+    {id:12, name: 'Вес', desctiption: '45кг' },
+    {id:13, name: 'Габариты', desctiption: '90x60x90' },
   ];
 
   return (

@@ -11,7 +11,11 @@ import {observer} from 'mobx-react-lite';
 
 const NavBar = observer( () => {
   const {user} = useContext(Context);
-  console.log(user);
+  const logOut = () => {
+    user.setIsAuth(false);
+    user.setUser(false);
+    localStorage.setItem('token', '');
+  }
   return (
     <Navbar bg="light" variant="light">
       <Container>
@@ -26,7 +30,7 @@ const NavBar = observer( () => {
             <NavLink className="main_nav" to={BASKET_ROUTE}>
               Корзина
             </NavLink>
-            <Button className='m-1' variant={'outline-primary'}>
+            <Button className='m-1' variant={'outline-primary'} onClick={logOut}>
               Выйти
             </Button>
           </Nav>

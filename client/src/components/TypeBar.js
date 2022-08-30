@@ -12,7 +12,7 @@ const TypeBar = observer( () => {
         {
             type.type.map(el => <ListGroup.Item 
                 className='listItem'
-                active = {el.id == type.selectedType.id}
+                active = {el.id === type.selectedType.id}
                 onClick = {() => type.setSelectedType(el)} 
                 key={el.id}>
                 {el.name}

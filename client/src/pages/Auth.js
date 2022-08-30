@@ -1,13 +1,41 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import Container from 'react-bootstrap/esm/Container';
 import '../styles/Auth.css';
 import { Form, Card, Col, Button } from 'react-bootstrap';
-import { NavLink, useLocation } from 'react-router-dom';
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../utils/consts';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { LOGIN_ROUTE, MAIN_ROUTE, REGISTRATION_ROUTE } from '../utils/consts';
+import { registration, login } from '../http/userAPI';
+import { observer } from 'mobx-react-lite';
+import { Context } from '..';
 
-const Auth = () => {
+const Auth = observer( () => {
 
    const isLocation = useLocation().pathname === LOGIN_ROUTE;
+   const [email, setEmail] = useState('');
+   const [password, setPassword] = useState('');
+   const navigate = useNavigate();
+   const {user} = useContext(Context);
+
+
+   const click = async () => {
+    try{
+      let response;
+      if(isLocation){
+        response = await login(email, password);
+      }
+      else{
+        response = await registration(email, password);
+      }
+      user.setIsAuth(true);
+      user.setUser(true);
+      navigate(MAIN_ROUTE);
+    }
+    catch (e)
+    {
+      alert(e.response.data.message);
+    }
+
+   }
 
   return (
     <Container className="conteiner">
@@ -20,10 +48,15 @@ const Auth = () => {
           <Form.Control
             className="card_form_control"
             placeholder="Введите логин..."
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <Form.Control
             className="card_form_data"
             placeholder="Введите пароль..."
+            type='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <Col className="card_form_control">
           {isLocation
@@ -35,11 +68,11 @@ const Auth = () => {
              </div>
           }
           {isLocation
-          ?<Button
+          ?<Button onClick={click}
             variant="outline-success">
             Войти
           </Button>
-          :<Button
+          :<Button onClick={click}
             variant="outline-primary">
             Зарегистрироваться
           </Button>
@@ -49,6 +82,6 @@ const Auth = () => {
       </Card>
     </Container>
   );
-};
+});
 
 export default Auth;

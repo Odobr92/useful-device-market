@@ -7,7 +7,7 @@ const ParamsBar = ({ deviceInfos }) => {
       <tbody>
           {
             deviceInfos.map(deviceInfo => 
-            <tr className='fs-5'>
+            <tr className='fs-6' key={deviceInfo.id}>
                 <td>{deviceInfo.name}</td>
                 <td>{deviceInfo.desctiption}</td>
             </tr>)

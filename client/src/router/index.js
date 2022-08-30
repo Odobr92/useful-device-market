@@ -1,3 +1,4 @@
+import React from 'react';
 import Auth from "../pages/Auth";
 import DevicePage from "../pages/DevicePage";
 import Admin from "../pages/Admin";
