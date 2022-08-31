@@ -12,16 +12,16 @@ class DeviceController {
             img.mv(path.resolve(__dirname, '..', 'static', fileName));
             
             const device = await Device.create({name, price, brandId, typeId, img: fileName});
-
+            
             if(info){
-                info = JSON.parse(info); 
-                info.forEach(e => {
+                const infoJSON = JSON.parse(info); 
+                infoJSON.forEach(e =>
                     DeviceInfo.create({
                         title: e.title,
                         description: e.description,
                         deviceId: device.id
                     })
-                });
+                );
             }
             return res.json(device);
         }
@@ -54,7 +54,6 @@ class DeviceController {
         return res.json(devices);
     }
     async getOne(req, res) {
-        console.log(req.params);
         const { id } = req.params;
         const device = await Device.findOne({
             where: {id},
