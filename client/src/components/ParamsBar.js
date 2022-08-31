@@ -8,8 +8,8 @@ const ParamsBar = ({ deviceInfos }) => {
           {
             deviceInfos.map(deviceInfo => 
             <tr className='fs-6' key={deviceInfo.id}>
-                <td>{deviceInfo.name}</td>
-                <td>{deviceInfo.desctiption}</td>
+                <td>{deviceInfo.title}</td>
+                <td>{deviceInfo.description}</td>
             </tr>)
           }
       </tbody>

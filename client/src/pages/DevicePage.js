@@ -1,49 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Image, Button, Card } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import ParamsBar from '../components/ParamsBar';
 import '../styles/DevicePage.css';
 import star from '../assets/star.png';
+import { fetchOneDevice } from '../http/deviceAPI';
+import { observer } from 'mobx-react-lite';
 
-const DevicePage = () => {
+const DevicePage = observer(() => {
+  const [device, setDevice] = useState({info: []});
   const { id } = useParams();
 
-  const TestDevice = {
-    id: 1,
-    name: 'Xiaomi Mi Electric Scooter 1S',
-    price: 20000,
-    img: 'https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg',
-    rating: 0,
-  };
-
-  const TestPrm = [
-    {id:1, name: 'Габариты', desctiption: '90x60x90' },
-    {id:2, name: 'Вес', desctiption: '45кг' },
-    {id:3, name: 'Габариты', desctiption: '90x60x90' },
-    {id:4, name: 'Вес', desctiption: '45кг' },
-    {id:5, name: 'Габариты', desctiption: '90x60x90' },
-    {id:6, name: 'Вес', desctiption: '45кг' },
-    {id:7, name: 'Габариты', desctiption: '90x60x90' },
-    {id:8, name: 'Вес', desctiption: '45кг' },
-    {id:9, name: 'Габариты', desctiption: '90x60x90' },
-    {id:10, name: 'Вес', desctiption: '45кг' },
-    {id:11, name: 'Габариты', desctiption: '90x60x90' },
-    {id:12, name: 'Вес', desctiption: '45кг' },
-    {id:13, name: 'Габариты', desctiption: '90x60x90' },
-  ];
+  useEffect(() => {
+    fetchOneDevice(id).then(data => {
+      setDevice(data);
+    })
+    
+  }, [])
 
   return (
     <Container>
       <Row className="devicePageConteiner_row1">
-        <Col ld={4}>
-          <Image width={470} height={'auto'} className='devicePageConteiner_row1_img' rounded={true} src={TestDevice.img} />
+        <Col ld={4} className='devicePageConteiner_row1_col'>
+          <Image width={470} height={'auto'} className='devicePageConteiner_row1_col_img' rounded={true} src={process.env.REACT_APP_API_URL + device.img} />
         </Col>
         <Col ld={8}>
           <div>
-            <h1>{TestDevice.name}</h1>
+            <h1>{device.name}</h1>
             <div className="devicePageConteiner_row1_rating">
               <div className='m-1'>Рейтинг:</div>
-              <div>{TestDevice.rating}</div>
+              <div>{device.rating}</div>
               <Image               
                 width={18}
                 height={18}
@@ -51,7 +37,7 @@ const DevicePage = () => {
               ></Image>
             </div>
             <Card className='devicePageConteiner_row1_price'>
-              <h2>{TestDevice.price} {String.fromCodePoint(0x20BD)}</h2>
+              <h2>{device.price} {String.fromCodePoint(0x20BD)}</h2>
               <Button>В корзину</Button>
             </Card>           
           </div>
@@ -60,12 +46,12 @@ const DevicePage = () => {
         <Col>
           <div className="devicePageConteiner_row2_params">
             <h4>Характеристики</h4>
-            <ParamsBar deviceInfos={TestPrm} />
+            <ParamsBar deviceInfos={device.info} />
           </div>
         </Col>
       </Row>
     </Container>
   );
-};
+});
 
 export default DevicePage;

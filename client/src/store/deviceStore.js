@@ -2,16 +2,35 @@ import { makeAutoObservable } from 'mobx';
 
 export default class deviceStore {
     constructor(){
-        this._device = [
-            {id: 1, name: "Xiaomi Mi Electric Scooter 1S", price: 20000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
-            {id: 2, name: "Bosch Serie 4 VitaFresh", price: 65000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
-            {id: 3, name: "Apple iPhone 12 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
-            {id: 4, name: "Apple iPhone 11 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
-            {id: 5, name: "Apple iPhone 11 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
-            {id: 6, name: "Apple iPhone 11 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 },
-            {id: 7, name: "Apple iPhone 11 Pro", price: 90000, img: "https://giffun.ru/wp-content/uploads/2019/04/0-97.jpg", rating: 0 }
-        ]
+        this._device = []
+        this._page = 1
+        this._totalCount = 0
+        this._limit = 2
         makeAutoObservable(this);
+    }
+
+    setPage(page){
+        this._page = page;
+    }
+
+    get page(){
+        return this._page;
+    }
+
+    setTotalCount(totalCount){
+        this._totalCount = totalCount;
+    }
+
+    get totalCount(){
+        return this._totalCount;
+    }
+
+    setLimit(limit){
+        this._limit = limit;
+    }
+
+    get limit(){
+        return this._limit;
     }
 
     setDevice(device){

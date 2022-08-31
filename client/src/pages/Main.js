@@ -10,6 +10,7 @@ import { Context } from '..';
 import { fetchType } from '../http/typeAPI';
 import { fetchBrand } from '../http/brandAPI';
 import { fetchDevice } from '../http/deviceAPI';
+import Pages from '../components/Pages';
 
 const Main = observer( () => {
 
@@ -18,8 +19,26 @@ const Main = observer( () => {
   useEffect(() => {
     fetchType().then(data => type.setType(data))
     fetchBrand().then(data => brand.setBrand(data))
-    fetchDevice().then(data => device.setDevice(data.rows))
+    fetchDevice(type.selectedType.id, brand.selectedBrand.id, device.limit, device.page).then(data => {
+      device.setDevice(data.rows)
+      device.setTotalCount(data.count)
+    })
   }, [])
+
+  useEffect(() => {
+    fetchDevice(type.selectedType.id, brand.selectedBrand.id, device.limit, device.page).then(data => {
+      device.setDevice(data.rows)
+      device.setTotalCount(data.count)
+    })
+  }, [device.page])
+
+  useEffect(() => {
+    fetchDevice(type.selectedType.id, brand.selectedBrand.id, device.limit, device.page).then(data => {
+      device.setDevice(data.rows)
+      device.setTotalCount(data.count)
+      device.setPage(1);
+    })
+  },[type.selectedType, brand.selectedBrand])
 
   return (
       <Container>
@@ -31,6 +50,7 @@ const Main = observer( () => {
             <BrandBar/>
             <NewsCarousel/>
             <DeviceList/>
+            <Pages/>
             </Col>         
         </Row>
       </Container>

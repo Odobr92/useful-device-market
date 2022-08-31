@@ -11,7 +11,7 @@ export default class brandStore {
         this._brand = brand;
     }
     
-    setSelectedBrend(brend){
+    setSelectedBrand(brend){
         this._selectedBrend = brend;
     }
 
@@ -19,7 +19,7 @@ export default class brandStore {
         return this._brand;
     }
 
-    get selectedBrend(){
+    get selectedBrand(){
         return this._selectedBrend;
     }
 }

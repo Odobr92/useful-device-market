@@ -9,8 +9,15 @@
     margin-bottom: 7%;
 }
 
-.devicePageConteiner_row1_img{
- object-fit: cover;
+.devicePageConteiner_row1_col{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.devicePageConteiner_row1_col_img{
+    padding: 5%;
+    max-width: fit-content;
 }
 
 .devicePageConteiner_row2{

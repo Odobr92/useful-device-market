@@ -10,7 +10,9 @@ const DeviceItem = ({device}) => {
     return (
         <Col md={3}>
             <Card className='card_device_list' onClick={() => navigate(`${DEVICE_ROUTE}/${device.id}`)}>
-              <Image rounded={true} className='card_device_list_img' src={device.img}></Image>
+              <div className='card_device_list_space'>
+               <Image rounded={true} className='card_device_list_space_img' src={process.env.REACT_APP_API_URL + device.img}></Image>
+              </div>
               <div className='card_device_list_info'>
                 <div>Apple...</div>
                 <div className='card_device_list_info_rating'>
