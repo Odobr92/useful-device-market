@@ -1,4 +1,4 @@
-const { BasketDevice, Basket } = require('../models/models');
+const { BasketDevice, Basket, Device } = require('../models/models');
 const ApiError = require('../error/ApiError');
 
 class basketController {
@@ -19,7 +19,7 @@ class basketController {
     const { id } = req.user;
     const basketUser = await Basket.findOne({ where: { userId: id } });
     const basketDevice = await BasketDevice.findAndCountAll({
-      where: { basketId: basketUser.id },
+      where: { basketId: basketUser.id,}, include: [{model: Device, as: 'device', required: true}]
     });
     return res.json(basketDevice);
   }

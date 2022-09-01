@@ -1,4 +1,4 @@
-const { Device, DeviceInfo } = require('../models/models');
+const { Device, DeviceInfo, Brand } = require('../models/models');
 const ApiError = require('../error/ApiError');
 const uuid = require('uuid');
 const path = require('path');
@@ -57,7 +57,7 @@ class DeviceController {
         const { id } = req.params;
         const device = await Device.findOne({
             where: {id},
-            include: [{model: DeviceInfo, as: 'info'}] //Получение информации вместе с устройством
+            include: [{model: DeviceInfo, as: 'info'}, {model: Brand, as: 'brand'}] //Получение информации вместе с устройством
         });
         return res.json(device);
     }
