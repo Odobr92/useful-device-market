@@ -1,0 +1,13 @@
+.basketSpace{
+    max-width: 70rem;
+    margin-block-start: 3%;
+}
+
+.basketSpace_next{
+    margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+
+}

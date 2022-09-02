@@ -1,0 +1,26 @@
+.sectionRadiusButton{
+    width: 28px;
+    height: 20px;
+}
+
+.radiusButton{
+    display:block;
+    text-align: center;
+    font-size: large;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 50%;
+    cursor: pointer;   
+    color: white;
+    border-color: rgb(13,110,253);
+    background-color: rgb(13,110,253);
+}
+
+
+.sectionRadiusButton:active .radiusButton {
+    border-color: lightgray;
+    border-width: 2px;
+    color: rgb(33,37,41);
+    background-color: white;
+    
+  }
