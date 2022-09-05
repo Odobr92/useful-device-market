@@ -10,7 +10,11 @@ const BrandBar = observer(() => {
         <Col className='main'>
             {brand.brand.map((el) => <Card
                 border = {el.id === brand.selectedBrand.id ? 'primary' : '' }
-                onClick = {() => brand.setSelectedBrand(el)}
+                onClick = {() => {
+                    brand.selectedBrand.id !== el.id
+                      ? brand.setSelectedBrand(el)
+                      : brand.setSelectedBrand({});
+                  }}
                 key = {el.id}
                 className = 'card_item'
             >

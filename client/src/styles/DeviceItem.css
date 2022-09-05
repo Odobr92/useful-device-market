@@ -3,7 +3,7 @@
 .card_device_list{
     display: flex;
     justify-content: center;
-    cursor:context-menu;
+    cursor: pointer;
     margin-top: 5%;
     padding: 5%;
     width: auto;
