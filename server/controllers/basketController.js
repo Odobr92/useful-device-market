@@ -19,7 +19,7 @@ class basketController {
     const { id } = req.user;
     const basketUser = await Basket.findOne({ where: { userId: id } });
     const basketDevice = await BasketDevice.findAndCountAll({
-      where: { basketId: basketUser.id,}, include: [{model: Device, as: 'device', required: true}]
+      where: { basketId: basketUser.id }, include: [{model: Device, as: 'device', required: true}]
     });
     return res.json(basketDevice);
   }
@@ -39,6 +39,23 @@ class basketController {
       });
     return res.json(basketDevice);
   }
+
+  async setAmountDevice(req, res, next) {
+    const { deviceId, amount } = req.body;
+    if (!deviceId)
+      return next(ApiError.badRequest('Нет данных об устройстве!'));
+    const { id } = req.user;
+    const basketUser = await Basket.findOne({ where: { userId: id } });
+    let basketDevice = await BasketDevice.findOne({
+      where: { basketId: basketUser.id, deviceId },
+    });
+    if (basketDevice){
+      basketDevice.amount = amount;
+      await basketDevice.save();
+    }
+    return res.json(basketDevice);
+  }
+
 }
 
 module.exports = new basketController();

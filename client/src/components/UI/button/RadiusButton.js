@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../../styles/Button.css';
 
-const RadiusButton = ({ children, ...props }) => {
+const RadiusButton = ({ children, active, ...props }) => {
   return (
     <div {...props}>
       <div className="sectionRadiusButton">

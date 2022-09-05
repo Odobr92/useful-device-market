@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { Container, Row, Col, Image, Button, Card } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import ParamsBar from '../components/ParamsBar';
@@ -6,8 +6,14 @@ import '../styles/DevicePage.css';
 import star from '../assets/star.png';
 import { fetchOneDevice } from '../http/deviceAPI';
 import { observer } from 'mobx-react-lite';
+import { Context } from '..';
+import { addBasketDevice, delBasketDevice, fetchBasketDevice } from '../http/basketAPI';
 
 const DevicePage = observer(() => {
+
+  const { basket } = useContext(Context);
+
+  const [isDeviceBasket, isSetDeviceBasket] = useState(false);
   const [device, setDevice] = useState({info: []});
   const { id } = useParams();
 
@@ -15,8 +21,28 @@ const DevicePage = observer(() => {
     fetchOneDevice(id).then(data => {
       setDevice(data);
     })
-    
-  }, [])
+    fetchBasketDevice()
+     .then(async (data) =>{ await basket.setBasketDevice(data)
+      isSetDeviceBasket(basket.basketDevice.rows.find((b) => b.deviceId == id));
+     })
+  },[])
+
+  useMemo(() => {
+    fetchBasketDevice()
+     .then(async (data) =>{ await basket.setBasketDevice(data)
+      
+    })
+    }, [isDeviceBasket])
+
+  const addBasket = () => {
+    addBasketDevice(device.id)
+    isSetDeviceBasket(true)
+  } 
+
+  const delBasket = () => {
+    delBasketDevice(device.id)
+    isSetDeviceBasket(false)   
+  }
 
   return (
     <Container>
@@ -38,7 +64,11 @@ const DevicePage = observer(() => {
             </div>
             <Card className='devicePageConteiner_row1_price'>
               <h2>{device.price} {String.fromCodePoint(0x20BD)}</h2>
-              <Button>В корзину</Button>
+              {
+                isDeviceBasket
+                ? <Button onClick={() => delBasket()}>Убрать из корзины</Button>
+                : <Button onClick={() => addBasket()}>В корзину</Button>
+              }          
             </Card>           
           </div>
         </Col>

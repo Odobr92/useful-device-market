@@ -36,12 +36,13 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-bottom: 4%;
+    margin-bottom: 3%;
 }
 
 .basketDeviceItem_data_amount_ind{
     width: 40px;
     text-align: center;
+    margin-top: 3%;
 }
 
 .basketDeviceItem_data_price{

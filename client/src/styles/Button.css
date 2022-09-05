@@ -16,6 +16,20 @@
     background-color: rgb(13,110,253);
 }
 
+.radiusButton_disable{
+    display:block;
+    text-align: center;
+    font-size: large;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 50%;
+    cursor:context-menu;  
+    color: white;
+    pointer-events: none;
+    border-color: rgb(193, 195, 198);
+    background-color: rgb(206, 208, 211);
+}
+
 
 .sectionRadiusButton:active .radiusButton {
     border-color: lightgray;
@@ -23,4 +37,4 @@
     color: rgb(33,37,41);
     background-color: white;
     
-  }
+}

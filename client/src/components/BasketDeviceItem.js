@@ -1,14 +1,37 @@
-import React from 'react';
+import { observer } from 'mobx-react-lite';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { Button, Card, Col, Row, Image } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { Context } from '..';
+import { fetchBasketDevice, setAmountBasketDevice } from '../http/basketAPI';
 import '../styles/BasketDeviceItem.css';
+import { DEVICE_ROUTE } from '../utils/consts';
 import RadiusButton from './UI/button/RadiusButton';
 
-const BasketDeviceItem = ({ basketDeviceItem }) => {
+const BasketDeviceItem = ({ basketDeviceItem, checkInfo}) => {
+
+  const navigate = useNavigate()
+
+  const [activeAmountMin, setActiveAmountMin] = useState(false);
+  const [activeAmountMax, setActiveAmountMax] = useState(false);
+  const [amount , setAmount] = useState(basketDeviceItem.amount);
+
+  useMemo(()=>{
+    checkInfo(basketDeviceItem.device.id, amount);
+  },[amount])
+
+  useMemo(()=>{
+    amount <= 1 ? setActiveAmountMin(true) : setActiveAmountMin(false)
+    amount >= 15 ? setActiveAmountMax(true) : setActiveAmountMax(false)
+  },[amount])
+
+
   return (
     <Card className="basketDeviceItem">
       <Row className="basketDeviceItem_data">
         <Col ml={4} className="basketDeviceItem_data_col1">
           <Image
+            onClick={() => navigate(`${DEVICE_ROUTE}/${basketDeviceItem.device.id}`)}
             className="basketDeviceItem_data_col1_image"
             rounded={true}
             src={process.env.REACT_APP_API_URL + basketDeviceItem.device.img}
@@ -21,15 +44,16 @@ const BasketDeviceItem = ({ basketDeviceItem }) => {
         </Col>
         <Col ml={2} className="basketDeviceItem_data_amount">
           <div className="d-flex flex-row mt-3">
-            <RadiusButton className='me-1'>-</RadiusButton>
-            <Card className='basketDeviceItem_data_amount_ind' border={'primary'}>{basketDeviceItem.amount}</Card>
-            <RadiusButton className='ms-1'>+</RadiusButton>
+            <Button disabled={activeAmountMin} onClick={() => setAmount(amount - 1)} className='me-1'>-</Button>
+            <Card className='basketDeviceItem_data_amount_ind' border={'primary'}>{amount}</Card>
+            <Button disabled={activeAmountMax} onClick={() => setAmount(amount + 1)} className='ms-1'>+</Button>
           </div>
         </Col>
         <Col ml={2} className="basketDeviceItem_data_price">
+        <Button>Убрать</Button>
           <div className="d-flex flex-column">
             <h6>
-              {basketDeviceItem.device.price} {String.fromCodePoint(0x20bd)}
+              {basketDeviceItem.device.price*amount} {String.fromCodePoint(0x20bd)}
             </h6>
           </div>
         </Col>

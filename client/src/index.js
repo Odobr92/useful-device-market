@@ -1,6 +1,7 @@
 import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import basketStore from './store/basketStore';
 import brandStore from './store/brandStore';
 import deviceStore from './store/deviceStore';
 import typeStore from './store/typeStore';
@@ -14,7 +15,8 @@ root.render(
     user: new userStore(),
     device: new deviceStore(),
     type: new typeStore(),
-    brand: new brandStore()
+    brand: new brandStore(),
+    basket: new basketStore()
   }}>
     <App />
   </Context.Provider>
