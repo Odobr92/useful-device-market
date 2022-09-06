@@ -56,7 +56,7 @@ const Basket = observer(() => {
             Всего товаров: {amountAll}
         </div>
         <div>
-            Общая сумма: {priceAll} р
+            Общая сумма: {priceAll} {String.fromCodePoint(0x20BD)}
         </div>
       </div>
       <div className='basketSpace_next'>

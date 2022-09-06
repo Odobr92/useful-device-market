@@ -6,70 +6,103 @@ import '../styles/DevicePage.css';
 import star from '../assets/star.png';
 import { fetchOneDevice } from '../http/deviceAPI';
 import { observer } from 'mobx-react-lite';
-import { Context } from '..';
-import { addBasketDevice, delBasketDevice, fetchBasketDevice } from '../http/basketAPI';
+import {
+  addBasketDevice,
+  delBasketDevice,
+  fetchOneBasketDevice,
+  setAmountBasketDevice,
+} from '../http/basketAPI';
+import BlueCounter from '../components/UI/counters/BlueCounter';
 
 const DevicePage = observer(() => {
-
-  const { basket } = useContext(Context);
-
   const [isDeviceBasket, isSetDeviceBasket] = useState(false);
-  const [device, setDevice] = useState({info: []});
+  const [amount, setAmount] = useState(0);
+  const [device, setDevice] = useState({ info: [] });
   const { id } = useParams();
 
   useEffect(() => {
-    fetchOneDevice(id).then(data => {
+    fetchOneDevice(id).then((data) => {
       setDevice(data);
-    })
-    fetchBasketDevice()
-     .then(async (data) =>{ await basket.setBasketDevice(data)
-      isSetDeviceBasket(basket.basketDevice.rows.find((b) => b.deviceId == id));
-     })
-  },[])
+    });
+    fetchOneBasketDevice(id).then((basket) => {
+      if (basket) {
+        isSetDeviceBasket(true);
+        setAmount(basket.amount);
+      }
+    });
+  }, []);
 
-  useMemo(() => {
-    fetchBasketDevice()
-     .then(async (data) =>{ await basket.setBasketDevice(data)
-      
-    })
-    }, [isDeviceBasket])
+  const addBasket = async () => {
+    await addBasketDevice(device.id);
+    await isSetDeviceBasket(true);
+    await fetchOneBasketDevice(id).then((basket) => {
+      if (basket) {
+        isSetDeviceBasket(true);
+        setAmount(basket.amount);
+      }
+    });
+  };
 
-  const addBasket = () => {
-    addBasketDevice(device.id)
-    isSetDeviceBasket(true)
-  } 
+  const delBasket = async () => {
+    await delBasketDevice(device.id);
+    await isSetDeviceBasket(false);
+    await fetchOneBasketDevice(id).then((basket) => {
+      if (basket) {
+        isSetDeviceBasket(true);
+        setAmount(basket.amount);
+      }
+    });
+  };
 
-  const delBasket = () => {
-    delBasketDevice(device.id)
-    isSetDeviceBasket(false)   
-  }
+  const updateAmount = async (amt) => {
+    setAmount(amt);
+    await setAmountBasketDevice(id, amt);
+    await fetchOneBasketDevice(id).then((basket) => {
+      if (basket) {
+        isSetDeviceBasket(true);
+        setAmount(basket.amount);
+      }
+    });
+  };
 
   return (
     <Container>
       <Row className="devicePageConteiner_row1">
-        <Col ld={4} className='devicePageConteiner_row1_col'>
-          <Image width={470} height={'auto'} className='devicePageConteiner_row1_col_img' rounded={true} src={process.env.REACT_APP_API_URL + device.img} />
+        <Col ld={4} className="devicePageConteiner_row1_col">
+          <Image
+            width={470}
+            height={'auto'}
+            className="devicePageConteiner_row1_col_img"
+            rounded={true}
+            src={process.env.REACT_APP_API_URL + device.img}
+          />
         </Col>
         <Col ld={8}>
           <div>
             <h1>{device.name}</h1>
             <div className="devicePageConteiner_row1_rating">
-              <div className='m-1'>Рейтинг:</div>
+              <div className="m-1">Рейтинг:</div>
               <div>{device.rating}</div>
-              <Image               
-                width={18}
-                height={18}
-                src={star}
-              ></Image>
+              <Image width={18} height={18} src={star}></Image>
             </div>
-            <Card className='devicePageConteiner_row1_price'>
-              <h2>{device.price} {String.fromCodePoint(0x20BD)}</h2>
-              {
-                isDeviceBasket
-                ? <Button onClick={() => delBasket()}>Убрать из корзины</Button>
-                : <Button onClick={() => addBasket()}>В корзину</Button>
-              }          
-            </Card>           
+            <Card className="devicePageConteiner_row1_price">
+              <h2>
+                {device.price} {String.fromCodePoint(0x20bd)}
+              </h2>
+              {isDeviceBasket ? (
+                <div>
+                  <Button variant="success" onClick={() => delBasket()}>
+                    В корзине
+                  </Button>
+                  <BlueCounter
+                    amount={amount}
+                    setAmount={updateAmount}
+                  />
+                </div>
+              ) : (
+                <Button onClick={() => addBasket()}>Добавить в корзину</Button>
+              )}
+            </Card>
           </div>
         </Col>
         <Row className="devicePageConteiner_row2"></Row>
