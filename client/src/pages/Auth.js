@@ -38,7 +38,7 @@ const Auth = observer( () => {
    }
 
   return (
-    <Container className="conteiner">
+    <Container className="authConteiner">
       <Card className="authCard">
         {isLocation
         ?<h2 className="card_header">Авторизация</h2>
