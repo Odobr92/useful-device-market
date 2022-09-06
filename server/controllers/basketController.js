@@ -24,6 +24,19 @@ class basketController {
     return res.json(basketDevice);
   }
 
+  async getOneBasketDevice(req, res) {
+    const { id: deviceId } = req.params;
+    const { id } = req.user;
+    const basketUser = await Basket.findOne({ where: { userId: id } });
+    const basketOneDevice = await BasketDevice.findOne({
+      where: { basketId: basketUser.id, deviceId}, include: [{model: Device, as: 'device', required: true}]
+    });
+    if (!basketOneDevice)
+      return res.json(false);
+    else
+      return res.json(basketOneDevice);
+  }
+
   async removeDevice(req, res, next) {
     const { deviceId } = req.body;
     if (!deviceId)
