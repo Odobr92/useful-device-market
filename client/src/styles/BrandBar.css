@@ -1,12 +1,16 @@
 .main {
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 2%;
 }
 
 .card_item {
-  padding: 1%;
-  margin: 0.5%;
-  margin-top: 1.5%;
-  width: auto;
+  margin-top: 5%;
   cursor: pointer;
+
+  padding-top: 5%;
+  padding-bottom: 5%;
+  
 }

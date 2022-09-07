@@ -67,8 +67,9 @@ const DevicePage = observer(() => {
 
   return (
     <Container>
+      <div className='devicePageConteiner'>
       <Row className="devicePageConteiner_row1">
-        <Col ld={4} className="devicePageConteiner_row1_col">
+        <Col md={7} lg={5} className="devicePageConteiner_row1_col">
           <Image
             width={470}
             height={'auto'}
@@ -77,7 +78,7 @@ const DevicePage = observer(() => {
             src={process.env.REACT_APP_API_URL + device.img}
           />
         </Col>
-        <Col ld={8}>
+        <Col md={5} lg={7}>
           <div>
             <h1>{device.name}</h1>
             <div className="devicePageConteiner_row1_rating">
@@ -89,20 +90,20 @@ const DevicePage = observer(() => {
               <h2>
                 {device.price} {String.fromCodePoint(0x20bd)}
               </h2>
+            </Card>
               {isDeviceBasket ? (
-                <div>
+                <div className='d-flex align-items-center'>
                   <Button variant="success" onClick={() => delBasket()}>
                     В корзине
                   </Button>
-                  <BlueCounter
+                  <BlueCounter cn={'ms-3'}
                     amount={amount}
                     setAmount={updateAmount}
                   />
                 </div>
               ) : (
                 <Button onClick={() => addBasket()}>Добавить в корзину</Button>
-              )}
-            </Card>
+              )}     
           </div>
         </Col>
         <Row className="devicePageConteiner_row2"></Row>
@@ -113,6 +114,7 @@ const DevicePage = observer(() => {
           </div>
         </Col>
       </Row>
+      </div>
     </Container>
   );
 });

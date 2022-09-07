@@ -6,7 +6,7 @@
     cursor: pointer;
     margin-top: 5%;
     padding: 5%;
-    width: auto;
+    box-shadow: 2px 1px 5px rgb(218, 217, 217);
 }
 
 .card_device_list_space{
@@ -22,6 +22,7 @@
     left:0;
     width:100%;
     height: 100%;
+    padding: 1%;
     max-width: fit-content;
 }
 
@@ -39,4 +40,11 @@
 
 .card_device_list_info_rating_star{
     margin-top: 10%;
+}
+
+.deviceItem_nameDevice{
+    display: flex;
+    justify-content: start;
+    align-items:flex-start;
+    height: 3rem;
 }

@@ -21,6 +21,7 @@ const Main = observer( () => {
     fetchBrand().then(data => brand.setBrand(data))
     fetchDevice(type.selectedType.id, brand.selectedBrand.id, device.limit, device.page).then(data => {
       device.setDevice(data.rows)
+      console.log(data.rows)
       device.setTotalCount(data.count)
     })
   }, [])
@@ -44,10 +45,12 @@ const Main = observer( () => {
       <Container>
         <Row>
            <Col md={3}>
+            <h6 className='mt-3'>Категории:</h6>
                 <TypeBar/>
+                <h6 className='mt-3'>Бренды:</h6>
+                <BrandBar/>
             </Col>
-            <Col md={9}>      
-            <BrandBar/>
+            <Col md={9}>                
             <NewsCarousel/>
             <DeviceList/>
             <Pages/>

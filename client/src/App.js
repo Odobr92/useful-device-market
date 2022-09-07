@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Spinner } from 'react-bootstrap';
+import { Nav, Spinner } from 'react-bootstrap';
 import { BrowserRouter } from 'react-router-dom';
 import { Context } from '.';
 import AppRouter from './components/AppRouter';
@@ -24,6 +24,27 @@ const App = () => {
     <BrowserRouter>
       <NavBar />
       <AppRouter/>
+      <div style={{height: '50px'}}>
+      </div>
+      <Nav className='f_flex justify-content-center align-items-center p-3'
+      activeKey="/home"
+      onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
+    >
+      <Nav.Item>
+        <Nav.Link href="/home">Active</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link-1">Link</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link-2">Link</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="disabled" disabled>
+          Disabled
+        </Nav.Link>
+      </Nav.Item>
+    </Nav>
     </BrowserRouter>
   );
 }
