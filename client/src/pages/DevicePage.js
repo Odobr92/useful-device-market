@@ -13,6 +13,7 @@ import {
   setAmountBasketDevice,
 } from '../http/basketAPI';
 import BlueCounter from '../components/UI/counters/BlueCounter';
+import RatingStar from '../components/UI/ratings/RatingStar';
 
 const DevicePage = observer(() => {
   const [isDeviceBasket, isSetDeviceBasket] = useState(false);
@@ -67,53 +68,59 @@ const DevicePage = observer(() => {
 
   return (
     <Container>
-      <div className='devicePageConteiner'>
-      <Row className="devicePageConteiner_row1">
-        <Col md={7} lg={5} className="devicePageConteiner_row1_col">
-          <Image
-            width={470}
-            height={'auto'}
-            className="devicePageConteiner_row1_col_img"
-            rounded={true}
-            src={process.env.REACT_APP_API_URL + device.img}
-          />
-        </Col>
-        <Col md={5} lg={7}>
-          <div>
-            <h1>{device.name}</h1>
-            <div className="devicePageConteiner_row1_rating">
-              <div className="m-1">Рейтинг:</div>
-              <div>{device.rating}</div>
-              <Image width={18} height={18} src={star}></Image>
-            </div>
-            <Card className="devicePageConteiner_row1_price">
-              <h2>
-                {device.price} {String.fromCodePoint(0x20bd)}
-              </h2>
-            </Card>
+      <div className="devicePageConteiner">
+        <Row className="devicePageConteiner_row1">
+          <Col md={7} lg={6} className="devicePageConteiner_row1_col">
+            <Image
+              width={470}
+              height={'auto'}
+              className="devicePageConteiner_row1_col_img"
+              rounded={true}
+              src={process.env.REACT_APP_API_URL + device.img}
+            />
+          </Col>
+          <Col md={5} lg={6}>
+            <div>
+              <h1>{device.name}</h1>
+              <div className="devicePageConteiner_row1_rating">
+                <div>{device.rating}</div>
+                <Image width={17} height={17} src={star}></Image>
+              </div>
+              <Card className="devicePageConteiner_row1_price">
+                <h2>
+                  {device.price} {String.fromCodePoint(0x20bd)}
+                </h2>
+              </Card>
               {isDeviceBasket ? (
-                <div className='d-flex align-items-center'>
+                <div className="d-flex align-items-center">
                   <Button variant="success" onClick={() => delBasket()}>
                     В корзине
                   </Button>
-                  <BlueCounter cn={'ms-3'}
+                  <BlueCounter
+                    cn={'ms-3'}
                     amount={amount}
                     setAmount={updateAmount}
                   />
                 </div>
               ) : (
                 <Button onClick={() => addBasket()}>Добавить в корзину</Button>
-              )}     
-          </div>
-        </Col>
-        <Row className="devicePageConteiner_row2"></Row>
-        <Col>
-          <div className="devicePageConteiner_row2_params">
-            <h4>Характеристики</h4>
-            <ParamsBar deviceInfos={device.info} />
-          </div>
-        </Col>
-      </Row>
+              )}
+            </div>
+          </Col>
+          <Row className="devicePageConteiner_row2"></Row>
+          <Col>
+            <div className="devicePageConteiner_row2_params">
+              <h4>Характеристики</h4>
+              <ParamsBar deviceInfos={device.info} />
+            </div>
+            <hr className="mt-5"></hr>
+            <div className="d-flex flex-column justify-content-center align-items-center mt-4">
+              <h4>Оцените товар:</h4>
+              <RatingStar />
+              <Button className="mt-3">Отправить</Button>
+            </div>
+          </Col>
+        </Row>
       </div>
     </Container>
   );

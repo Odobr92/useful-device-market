@@ -17,7 +17,7 @@ const DeviceItem = ({device}) => {
                 <div>{device.brand.name}</div>
                 <div className='card_device_list_info_rating'>
                     <div>{device.rating}</div>
-                    <Image className='card_device_list_info_rating_star' width={18} height={18} src={star}></Image>
+                    <Image className='card_device_list_info_rating_star' width={13} height={13} src={star}></Image>
                 </div>
             </div>
             <div className='deviceItem_nameDevice'>

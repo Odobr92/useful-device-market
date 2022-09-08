@@ -35,13 +35,14 @@
     justify-content: left;
     align-items:flex-start;
     width: 500px;
+    margin-top: 5%;
 }
 .devicePageConteiner_row1_rating{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    margin: 1% 0% 2% 0%;
+    margin: 1% 0% 2% 2%;
 }
 
 .devicePageConteiner_row1_price{
