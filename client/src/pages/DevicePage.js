@@ -83,7 +83,7 @@ const DevicePage = observer(() => {
             <div>
               <h1>{device.name}</h1>
               <div className="devicePageConteiner_row1_rating">
-                <div>{device.rating}</div>
+                <div>{Math.floor(device.rating * 100) / 100}</div>
                 <Image width={17} height={17} src={star}></Image>
               </div>
               <Card className="devicePageConteiner_row1_price">
@@ -114,10 +114,8 @@ const DevicePage = observer(() => {
               <ParamsBar deviceInfos={device.info} />
             </div>
             <hr className="mt-5"></hr>
-            <div className="d-flex flex-column justify-content-center align-items-center mt-4">
-              <h4>Оцените товар:</h4>
-              <RatingStar />
-              <Button className="mt-3">Отправить</Button>
+            <div className="d-flex flex-column justify-content-center align-items-center mt-4">            
+              <RatingStar id={id} />    
             </div>
           </Col>
         </Row>

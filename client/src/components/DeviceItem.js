@@ -16,7 +16,7 @@ const DeviceItem = ({device}) => {
               <div className='card_device_list_info'>
                 <div>{device.brand.name}</div>
                 <div className='card_device_list_info_rating'>
-                    <div>{device.rating}</div>
+                    <div>{Math.floor(device.rating * 100) / 100}</div>
                     <Image className='card_device_list_info_rating_star' width={13} height={13} src={star}></Image>
                 </div>
             </div>

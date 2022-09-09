@@ -1,9 +1,10 @@
-const { Rating } = require('../models/models');
+const { Rating, Device } = require('../models/models');
 const ApiError = require('../error/ApiError');
 const uuid = require('uuid');
+const sequelize = require('../db');
 
 class RatingController{
-    async addRating(req, res) {
+    async addRating(req, res, next) {
         const { id } = req.user;
         const {rate, deviceId} = req.body;
         if(!rate || !deviceId){
@@ -18,25 +19,41 @@ class RatingController{
         else{
             rating = await Rating.create({rate, deviceId, userId: id });
         }
+
+        let calcRating = await Rating.findAll({ 
+            attributes: [[sequelize.fn('AVG', sequelize.col('rate')), 'rate']] ,
+            group: 'deviceId',
+            order: ['deviceId'],
+            where: {deviceId}
+        });
+        console.log(id)
+        console.log(deviceId)
+        console.log(rate)
+
+        let device = await Device.findOne({
+            where: {id: deviceId}
+        });
+        device.rating = Number(calcRating[0].rate);
+        await device.save();
+
         return res.json(rating);
     }
 
     async getOneDevice(req, res, next) {
-        console.log(req.body)
         let rez = {rating: 0, count: 0}
         const { deviceId } = req.body;
         if (!deviceId)
         {
             return next(ApiError.internal('Укажите id устройства!'))
         }
-        const rating = await Rating.findAll({ where: { deviceId } });
-        rating.forEach((e) => {
-            rez.rating = rez.rating + e.rate;
-            rez.count++;
-         })
-         if(rez.count != 0)
-         rez.rating = rez.rating / rez.count
-        return res.json(rez);
+        const rating = await Rating.findAll({ 
+            attributes: [[sequelize.fn('COUNT', sequelize.col('*')), 'count'], [sequelize.fn('AVG', sequelize.col('rate')), 'rate']] ,
+            group: 'deviceId',
+            order: ['deviceId'],
+            where: {deviceId}
+        });
+
+        return res.json(rating);
     }
 }
 

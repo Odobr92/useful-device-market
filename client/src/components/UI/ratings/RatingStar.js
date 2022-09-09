@@ -1,8 +1,10 @@
 import React, { useMemo, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { addRating } from '../../../http/ratingAPI';
 import '../../../styles/Rating.css';
 import '../../../styles/Stars.css';
 
-const RatingStar = () => {
+const RatingStar = ({ id }) => {
   const [rating, setRating] = useState(4);
   const [star1, setStar1] = useState(false);
   const [star2, setStar2] = useState(false);
@@ -20,7 +22,6 @@ const RatingStar = () => {
 
   useMemo(() => {
     resetStar();
-    console.log(rating);
     switch (rating) {
       case 1:
         setStar1(true);
@@ -40,8 +41,17 @@ const RatingStar = () => {
     }
   }, [rating]);
 
+  const creatRating = async () => {
+    console.log(id, rating);
+    await addRating(id, rating)
+    .then(() => alert('Спасибо за оценку!'))
+    .catch(() => alert('Произошла ошибка!'))
+  }
+
   return (
-    <div class="review_stars_wrap">
+    <div class="review_stars_wrap d-flex flex-column justify-content-center align-items-center">
+      <h4>Оцените товар:</h4>
+      <h5 className="mt-2">{rating}</h5>
       <div id="review_stars">
         <input
           id="star-4"
@@ -104,7 +114,7 @@ const RatingStar = () => {
           <i class="fas fa-star"></i>
         </label>
       </div>
-      <div className="d-flex ps-2">{rating}</div>
+      <Button className="mt-4" onClick={creatRating}>Отправить</Button>
     </div>
   );
 };

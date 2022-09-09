@@ -11,6 +11,7 @@ import { fetchType } from '../http/typeAPI';
 import { fetchBrand } from '../http/brandAPI';
 import { fetchDevice } from '../http/deviceAPI';
 import Pages from '../components/Pages';
+import { fetchRating } from '../http/ratingAPI';
 
 const Main = observer( () => {
 
