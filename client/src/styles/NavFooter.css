@@ -1,0 +1,10 @@
+.nav_icon{
+    height: 30px;
+    width: 100%;
+    color: rgba(30, 30, 30, 0.50);
+}
+
+.nav_icon:hover {
+    color: rgb(13,110,253)
+}
+
