@@ -10,7 +10,7 @@ const DeviceList = observer(() => {
     const { device } = useContext(Context);
 
     return (
-        <Row>
+        <Row className='mt-1'>
             {device.device.map(el => <DeviceItem
             key={el.id}
             device={el}

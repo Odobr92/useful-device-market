@@ -1,23 +1,25 @@
 import React from 'react';
-import { Carousel } from 'react-bootstrap';
+import { Carousel, Image } from 'react-bootstrap';
 
 const NewsCarousel = () => {
     return (
-      <Carousel fade className='mt-3' style={{height: '300px'}}>
+      <Carousel fade className='mt-3' style={{maxWidth: '1200px'}}>
       <Carousel.Item>
-        <div style={{height: '300px'}}>
-        <img
+        <div>
+        <Image
           className="d-block w-100"
-          src="https://b1.m24.ru/c/1178803.jpg"
-          alt="Second slide"
+          rounded={true}
+          src={process.env.REACT_APP_API_URL + 'Watch_Xiaomi.jpg'}
+          alt="Third slide"
         />
         </div>
       </Carousel.Item>
       <Carousel.Item>
-      <div style={{height: '300px'}}>
-        <img
+      <div>
+        <Image
           className="d-block w-100"
-          src="https://b1.m24.ru/c/1178804.jpg"
+          rounded={true}
+          src={process.env.REACT_APP_API_URL + 'Scooter_1S.jpg'}
           alt="Third slide"
         />
         </div>
