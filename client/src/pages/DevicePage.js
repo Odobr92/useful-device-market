@@ -72,14 +72,14 @@ const DevicePage = observer(() => {
         <Row className="devicePageConteiner_row1">
           <Col md={7} lg={6} className="devicePageConteiner_row1_col">
             <Image
-              width={470}
+              width={400}
               height={'auto'}
               className="devicePageConteiner_row1_col_img"
               rounded={true}
               src={process.env.REACT_APP_API_URL + device.img}
             />
           </Col>
-          <Col md={5} lg={6}>
+          <Col lg={6}>
             <div>
               <h1>{device.name}</h1>
               <div className="devicePageConteiner_row1_rating">
@@ -115,7 +115,7 @@ const DevicePage = observer(() => {
             </div>
             <hr className="mt-5"></hr>
             <div className="d-flex flex-column justify-content-center align-items-center mt-4">            
-              <RatingStar id={id} />    
+            <RatingStar id={id} />  
             </div>
           </Col>
         </Row>

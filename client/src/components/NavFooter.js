@@ -13,7 +13,7 @@ const NavFooter = () => {
 
   return (
     <Nav
-      className="f_flex justify-content-center align-items-center p-3"
+      className="d_flex justify-content-center align-items-center p-3"
       onSelect={(event) => alert(event)}
     >
       <Nav.Item>

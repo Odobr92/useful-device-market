@@ -42,14 +42,13 @@ const RatingStar = ({ id }) => {
   }, [rating]);
 
   const creatRating = async () => {
-    console.log(id, rating);
     await addRating(id, rating)
     .then(() => alert('Спасибо за оценку!'))
     .catch(() => alert('Произошла ошибка!'))
   }
 
   return (
-    <div class="review_stars_wrap d-flex flex-column justify-content-center align-items-center">
+    <div className="review_stars_wrap d-flex flex-column justify-content-center align-items-center">
       <h4>Оцените товар:</h4>
       <h5 className="mt-2">{rating}</h5>
       <div id="review_stars">
@@ -58,60 +57,60 @@ const RatingStar = ({ id }) => {
           type="radio"
           name="stars"
           checked={star5}
-          onClick={() => {
+          onChange={() => {
             setRating(5);
           }}
         />
         <label title="Отлично" for="star-4">
-          <i class="fas fa-star" disabled></i>
+          <i className="fas fa-star"></i>
         </label>
         <input
           id="star-3"
           type="radio"
           name="stars"
           checked={star4}
-          onClick={() => {
+          onChange={() => {
             setRating(4);
           }}
         />
         <label title="Хорошо" for="star-3">
-          <i class="fas fa-star"></i>
+          <i className="fas fa-star"></i>
         </label>
         <input
           id="star-2"
           type="radio"
           name="stars"
           checked={star3}
-          onClick={() => {
+          onChange={() => {
             setRating(3);
           }}
         />
         <label title="Нормально" for="star-2">
-          <i class="fas fa-star"></i>
+          <i className="fas fa-star"></i>
         </label>
         <input
           id="star-1"
           type="radio"
           name="stars"
           checked={star2}
-          onClick={() => {
+          onChange={() => {
             setRating(2);
           }}
         />
         <label title="Плохо" for="star-1">
-          <i class="fas fa-star"></i>
+          <i className="fas fa-star"></i>
         </label>
         <input
           id="star-0"
           type="radio"
           name="stars"
           checked={star1}
-          onClick={() => {
+          onChange={() => {
             setRating(1);
           }}
         />
         <label title="Ужасно" for="star-0">
-          <i class="fas fa-star"></i>
+          <i className="fas fa-star"></i>
         </label>
       </div>
       <Button className="mt-4" onClick={creatRating}>Отправить</Button>

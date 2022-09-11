@@ -26,9 +26,6 @@ class RatingController{
             order: ['deviceId'],
             where: {deviceId}
         });
-        console.log(id)
-        console.log(deviceId)
-        console.log(rate)
 
         let device = await Device.findOne({
             where: {id: deviceId}

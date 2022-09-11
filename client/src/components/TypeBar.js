@@ -16,7 +16,7 @@ const TypeBar = observer(() => {
           onClick={() => {
             type.selectedType.id !== el.id
               ? type.setSelectedType(el)
-              : type.setSelectedType({});
+              : type.setSelectedType({})
           }}
           key={el.id}
         >

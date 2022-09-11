@@ -6,6 +6,9 @@
 }
 
 .main_nav{
+    display: flex;
+    justify-content:center;
+    align-items: center;
     color:rgba(0, 0, 0, 0.7);;
     font-size:large;
     text-decoration: none;

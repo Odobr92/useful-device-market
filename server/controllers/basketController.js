@@ -23,6 +23,7 @@ class basketController {
     });
     return res.json(basketDevice);
   }
+  
   async getOneBasketDevice(req, res, next) {
     const { id: deviceId } = req.params;
     const { id } = req.user;

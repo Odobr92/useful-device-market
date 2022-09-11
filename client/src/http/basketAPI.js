@@ -17,12 +17,10 @@ export const fetchBasketDevice = async () => {
 
 export const setAmountBasketDevice = async (deviceId, amount) => {
     const {data} = await $authHost.post('api/basket/amount', {deviceId, amount})
-    console.log(data);
     return data
 }
 
 export const fetchOneBasketDevice = async (deviceId) => {
     const {data} = await $authHost.get('api/basket/' + deviceId)
-    console.log(data);
     return data
 }

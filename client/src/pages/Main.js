@@ -11,7 +11,6 @@ import { fetchType } from '../http/typeAPI';
 import { fetchBrand } from '../http/brandAPI';
 import { fetchDevice } from '../http/deviceAPI';
 import Pages from '../components/Pages';
-import { fetchRating } from '../http/ratingAPI';
 
 const Main = observer( () => {
 
@@ -22,7 +21,6 @@ const Main = observer( () => {
     fetchBrand().then(data => brand.setBrand(data))
     fetchDevice(type.selectedType.id, brand.selectedBrand.id, device.limit, device.page).then(data => {
       device.setDevice(data.rows)
-      console.log(data.rows)
       device.setTotalCount(data.count)
     })
   }, [])

@@ -48,7 +48,7 @@ const Basket = observer(() => {
       <h2>Корзина</h2>
       {loading
       ? (<Spinner animation="border" variant="primary"/>)
-      : basket.basketDevice.rows.map(basketDeviceItem => <BasketDeviceItem  checkInfo = {checkInfo} basketDeviceItem={basketDeviceItem}/>)
+      : basket.basketDevice.rows.map(basketDeviceItem => <BasketDeviceItem key={basketDeviceItem.device.id}  checkInfo = {checkInfo} basketDeviceItem={basketDeviceItem}/>)
       }
       <hr />
       <div className='d-flex align-items-end justify-content-between'>
@@ -60,7 +60,7 @@ const Basket = observer(() => {
         </div>
       </div>
       <div className='basketSpace_next'>
-      <Button onClick={() =>{ }}>
+      <Button onClick={() =>{ alert('Спасибо за заказ но дальше нельзя!') }}>
         Перейти к оформлению
       </Button>
       </div>
