@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Col, Image } from 'react-bootstrap';
 import '../styles/DeviceItem.css';
 import star from '../assets/star.png';
@@ -7,6 +7,13 @@ import { DEVICE_ROUTE } from '../utils/consts';
 
 const DeviceItem = ({ device }) => {
   const navigate = useNavigate();
+
+  useEffect(() =>{
+    setRatingCalc(Math.floor(device.rating * 100) / 100)
+  },[])
+
+  const [ratingCalc, setRatingCalc] = useState(0)
+
   return (
     <Col xs={6} md={4} lg={3}>
       <Card
@@ -23,7 +30,7 @@ const DeviceItem = ({ device }) => {
         <div className="card_device_list_info">
           <div>{device.brand.name}</div>
           <div className="card_device_list_info_rating">
-            <div>{Math.floor(device.rating * 100) / 100}</div>
+            <div>{ratingCalc}</div>
             <Image
               className="card_device_list_info_rating_star"
               width={13}

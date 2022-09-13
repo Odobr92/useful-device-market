@@ -47,10 +47,10 @@ const BasketDeviceItem = ({ basketDeviceItem, checkInfo }) => {
             </Col>
           </Row>
           <Row className='d-flex align-items-center'>
-            <Col xs={7} md={7}className='align-items-stretch' >
+            <Col xs={6} md={7}className='align-items-stretch' >
               <BlueCounter cn={'justify-content-end'} amount={amount} setAmount={setAmount} />
             </Col>
-            <Col xs={3} md={4}>
+            <Col xs={4} md={4}>
               <div className='d-flex justify-content-center'>
                 <h6>
                   {basketDeviceItem.device.price * amount}{' '}

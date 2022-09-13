@@ -8,6 +8,7 @@ export default class basketStore {
 
     setBasketDevice(basketDevice){
         this._basketDevice = basketDevice;
+        this._basketDevice.rows = this._basketDevice.rows.sort();
     }
     
     get basketDevice(){

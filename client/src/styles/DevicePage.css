@@ -1,8 +1,7 @@
 .devicePageConteiner{
-    margin-top: 15px;
+    margin-top: 10px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    max-width: 1050px;
 }
 
 .devicePageConteiner_row1{
@@ -15,7 +14,6 @@
 .devicePageConteiner_row1_col{
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .devicePageConteiner_row1_col_img{
@@ -25,15 +23,14 @@
 
 .devicePageConteiner_row2{
     display: flex;
-    width: 100%;
-    margin-left: 4%;
+    flex-direction: row;
     margin-top: 2%;
 }
 
 .devicePageConteiner_row2_params{
     justify-content: left;
     align-items:flex-start;
-    max-width: 500px;
+    max-width: 550px;
     margin-top: 5%;
 }
 .devicePageConteiner_row1_rating{

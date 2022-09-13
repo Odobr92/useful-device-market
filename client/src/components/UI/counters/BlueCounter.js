@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import '../../../styles/BlueCounter.css'
+import CastomButton from '../button/CastomButton';
 
 const BlueCounter = ({ amount, setAmount, limitMin = 1, limitMax = 15, cn = '' }) => {
   const [activeAmountMin, setActiveAmountMin] = useState(false);
@@ -13,23 +14,23 @@ const BlueCounter = ({ amount, setAmount, limitMin = 1, limitMax = 15, cn = '' }
 
   return (
     <div className={"blueCounter " + cn}>
-      <Button
+      <CastomButton
         disabled={activeAmountMin}
         onClick={() => setAmount(amount - 1)}
         className="me-1"
       >
         -
-      </Button>
+      </CastomButton>
       <Card className="basketDeviceItem_data_amount_ind" border={'primary'}>
         {amount}
       </Card>
-      <Button
+      <CastomButton
         disabled={activeAmountMax}
         onClick={() => setAmount(amount + 1)}
         className="ms-1"
       >
         +
-      </Button>
+      </CastomButton>
     </div>
   );
 };

@@ -1,10 +1,14 @@
-import React, { useMemo, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { Context } from '../../..';
 import { addRating } from '../../../http/ratingAPI';
 import '../../../styles/Rating.css';
 import '../../../styles/Stars.css';
 
 const RatingStar = ({ id }) => {
+
+  const { user } = useContext(Context);
+
   const [rating, setRating] = useState(4);
   const [star1, setStar1] = useState(false);
   const [star2, setStar2] = useState(false);
@@ -42,9 +46,14 @@ const RatingStar = ({ id }) => {
   }, [rating]);
 
   const creatRating = async () => {
-    await addRating(id, rating)
-    .then(() => alert('Спасибо за оценку!'))
-    .catch(() => alert('Произошла ошибка!'))
+    if(user.isAuth){
+      await addRating(id, rating)
+      .then(() => alert('Спасибо за оценку!'))
+      .catch(() => alert('Произошла ошибка!'))
+    }
+    else{
+      alert('Для установки оценки необходима авторизация!')
+    }
   }
 
   return (
@@ -61,7 +70,7 @@ const RatingStar = ({ id }) => {
             setRating(5);
           }}
         />
-        <label title="Отлично" for="star-4">
+        <label title="Отлично" htmlFor="star-4">
           <i className="fas fa-star"></i>
         </label>
         <input
@@ -73,7 +82,7 @@ const RatingStar = ({ id }) => {
             setRating(4);
           }}
         />
-        <label title="Хорошо" for="star-3">
+        <label title="Хорошо" htmlFor="star-3">
           <i className="fas fa-star"></i>
         </label>
         <input
@@ -85,7 +94,7 @@ const RatingStar = ({ id }) => {
             setRating(3);
           }}
         />
-        <label title="Нормально" for="star-2">
+        <label title="Нормально" htmlFor="star-2">
           <i className="fas fa-star"></i>
         </label>
         <input
@@ -97,7 +106,7 @@ const RatingStar = ({ id }) => {
             setRating(2);
           }}
         />
-        <label title="Плохо" for="star-1">
+        <label title="Плохо" htmlFor="star-1">
           <i className="fas fa-star"></i>
         </label>
         <input
@@ -109,7 +118,7 @@ const RatingStar = ({ id }) => {
             setRating(1);
           }}
         />
-        <label title="Ужасно" for="star-0">
+        <label title="Ужасно" htmlFor="star-0">
           <i className="fas fa-star"></i>
         </label>
       </div>
