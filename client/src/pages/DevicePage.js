@@ -94,7 +94,7 @@ const DevicePage = observer(() => {
             />
           </Col>
           <Col xs={12} md={5} lg={6} className='devicePageConteiner_row1_col'>
-            <div>
+            <div className='devicePageConteiner_row1_col_box'>
               <h1>{device.name}</h1>
               <div className="devicePageConteiner_row1_rating">
                 <div>{ratingCalc}</div>

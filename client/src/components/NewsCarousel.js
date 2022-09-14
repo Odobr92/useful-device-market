@@ -10,7 +10,7 @@ const NewsCarousel = () => {
           className="d-block w-100"
           rounded={true}
           src={process.env.REACT_APP_API_URL + 'Watch_Xiaomi.jpg'}
-          alt="Third slide"
+          alt="Watch_Xiaomi"
         />
         </div>
       </Carousel.Item>
@@ -20,7 +20,7 @@ const NewsCarousel = () => {
           className="d-block w-100"
           rounded={true}
           src={process.env.REACT_APP_API_URL + 'Scooter_1S.jpg'}
-          alt="Third slide"
+          alt="Scooter_1S"
         />
         </div>
       </Carousel.Item>

@@ -1,10 +1,17 @@
 import React from 'react';
 import '../../../styles/Button.css';
 
-const CastomButton = ({ children, ...props }) => {
+const CastomButton = ({disabled, children, onClick, ...props }) => {
   return (
-    <div {...props}>
-      <div className="custom_btn">{children}</div>
+    <div div {...props}>
+    {disabled
+    ? (
+        <div className="custom_btn_disable">{children}</div>
+      )
+    :(
+        <div onClick={onClick} className="custom_btn">{children}</div>
+     )
+    }
     </div>
   );
 };

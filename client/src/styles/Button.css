@@ -39,6 +39,20 @@
     color: #fff;
 }
 
+.custom_btn_disable{
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    cursor: context-menu;
+    border: 1px solid rgb(149, 191, 255);
+    color: white;
+    background-color: rgba(13, 109, 253, 0.503);
+}
+
 .custom_btn{
     padding: 5px 10px 5px 10px;
     border-radius: 5px;

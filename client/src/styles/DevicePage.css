@@ -16,6 +16,10 @@
     justify-content: center;
 }
 
+.devicePageConteiner_row1_col_box{
+    width: 100%;
+}
+
 .devicePageConteiner_row1_col_img{
     padding: 5%;
     max-width: fit-content;
