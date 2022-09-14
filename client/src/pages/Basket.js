@@ -1,34 +1,27 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { Container, Row, Col, Image, Button, Card } from 'react-bootstrap';
+import React, { useContext, useEffect, useState } from 'react';
+import { Container, Button, } from 'react-bootstrap';
 import { Context } from '..';
 import BasketDeviceItem from '../components/BasketDeviceItem';
-import { fetchBasketDevice, setAmountBasketDevice } from '../http/basketAPI';
+import { fetchBasketDevice} from '../http/basketAPI';
 import '../styles/Basket.css';
 import { Spinner } from 'react-bootstrap';
 import { observer } from 'mobx-react-lite';
 
 const Basket = observer(() => {
-
   const { basket } = useContext(Context);
   const [loading, setLoading] = useState(true);
-  const [amountAll, setAmountAll] = useState(0)
-  const [priceAll, setPriceAll] = useState(0)
+  const [amountAll, setAmountAll] = useState(0);
+  const [priceAll, setPriceAll] = useState(0);
 
   useEffect(() => {
     fetchBasketDevice()
-    .then((data) => basket.setBasketDevice(data))
-    .finally(() => setLoading(false))
+      .then((data) => basket.setBasketDevice(data))
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
- const checkInfo = async (id, amount) => {
-    await setAmountBasketDevice(id, amount);
-    await fetchBasketDevice().then(data => { 
-        basket.setBasketDevice(data)
-        })
-    setAllInfo();
- }
-
-  const setAllInfo = () => {
+  const checkAll = () => {
     if(basket.basketDevice.rows)
     {
     let amount = 0;
@@ -38,35 +31,40 @@ const Basket = observer(() => {
       price = price + (bd.device.price*bd.amount)  
     });
     setAmountAll(amount)
-    setPriceAll(price)   
+    setPriceAll(price)
     }
   }
 
-    return (
-    <Container> 
-      <div className='basketSpace'>
-      <h2>Корзина</h2>
-      {loading
-      ? (<Spinner animation="border" variant="primary"/>)
-      : basket.basketDevice.rows.map(basketDeviceItem => <BasketDeviceItem key={basketDeviceItem.device.id}  checkInfo = {checkInfo} basketDeviceItem={basketDeviceItem}/>)
-      }
-      <hr />
-      <div className='d-flex align-items-end justify-content-between'>
-      <div>
-            Всего товаров: {amountAll}
+  return (
+    <Container>
+      <div className="basketSpace">
+        <h2>Корзина</h2>
+        {loading ? (
+          <Spinner animation="border" variant="primary" />
+        ) : (
+          basket.basketDevice.rows.map((b) => (
+            <BasketDeviceItem key={b.id} basketItem={b} checkAll={checkAll}
+            />))
+        )}
+        <hr />
+        <div className="d-flex align-items-end justify-content-between">
+          <div>Всего товаров: {amountAll}</div>
+          <div>
+            Общая сумма: {priceAll} {String.fromCodePoint(0x20bd)}
+          </div>
         </div>
-        <div>
-            Общая сумма: {priceAll} {String.fromCodePoint(0x20BD)}
+        <div className="basketSpace_next">
+          <Button
+            onClick={() => {
+              alert('Спасибо за заказ но дальше нельзя!');
+            }}
+          >
+            Перейти к оформлению
+          </Button>
         </div>
-      </div>
-      <div className='basketSpace_next'>
-      <Button onClick={() =>{ alert('Спасибо за заказ но дальше нельзя!') }}>
-        Перейти к оформлению
-      </Button>
-      </div>
       </div>
     </Container>
-    );
-})
+  );
+});
 
 export default Basket;

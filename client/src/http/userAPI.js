@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode'
 
 export const registration = async (email, password) => {
     let role
-    if(password == 'YouAdmin'){
+    if(password === 'YouAdmin'){
       password = email + password
       role = 'ADMIN'       
     }

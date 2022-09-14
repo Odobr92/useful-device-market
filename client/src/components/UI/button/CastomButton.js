@@ -3,7 +3,7 @@ import '../../../styles/Button.css';
 
 const CastomButton = ({disabled, children, onClick, ...props }) => {
   return (
-    <div div {...props}>
+    <div {...props}>
     {disabled
     ? (
         <div className="custom_btn_disable">{children}</div>

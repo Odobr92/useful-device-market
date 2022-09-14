@@ -6,7 +6,6 @@ import '../../../styles/Rating.css';
 import '../../../styles/Stars.css';
 
 const RatingStar = ({ id }) => {
-
   const { user } = useContext(Context);
 
   const [rating, setRating] = useState(4);
@@ -42,19 +41,20 @@ const RatingStar = ({ id }) => {
       case 5:
         setStar5(true);
         break;
+      default:
+        setStar1(true);
     }
   }, [rating]);
 
   const creatRating = async () => {
-    if(user.isAuth){
+    if (user.isAuth) {
       await addRating(id, rating)
-      .then(() => alert('Спасибо за оценку!'))
-      .catch(() => alert('Произошла ошибка!'))
+        .then(() => alert('Спасибо за оценку!'))
+        .catch(() => alert('Произошла ошибка!'));
+    } else {
+      alert('Для установки оценки необходима авторизация!');
     }
-    else{
-      alert('Для установки оценки необходима авторизация!')
-    }
-  }
+  };
 
   return (
     <div className="review_stars_wrap d-flex flex-column justify-content-center align-items-center">
@@ -122,7 +122,9 @@ const RatingStar = ({ id }) => {
           <i className="fas fa-star"></i>
         </label>
       </div>
-      <Button className="mt-4" onClick={creatRating}>Отправить</Button>
+      <Button className="mt-4" onClick={creatRating}>
+        Отправить
+      </Button>
     </div>
   );
 };

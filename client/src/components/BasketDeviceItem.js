@@ -1,28 +1,29 @@
 import { observer } from 'mobx-react-lite';
-import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { Button, Card, Col, Row, Image, Container } from 'react-bootstrap';
+import React, { useContext} from 'react';
+import { Card, Col, Row, Image, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '..';
-import { delBasketDevice, fetchBasketDevice, setAmountBasketDevice } from '../http/basketAPI';
+import { delBasketDevice, setAmountBasketDevice } from '../http/basketAPI';
 import '../styles/BasketDeviceItem.css';
 import { DEVICE_ROUTE } from '../utils/consts';
 import DeleteButton from './UI/button/DeleteButton';
 import BlueCounter from './UI/counters/BlueCounter';
 
-const BasketDeviceItem = ({ basketDeviceItem, checkInfo }) => {
+const BasketDeviceItem = observer(({basketItem, checkAll}) => {
   const navigate = useNavigate();
+  const { basket } = useContext(Context);
 
-  const [amount, setAmount] = useState(basketDeviceItem.amount);
+  const setAmount = async (amount) => {
+    await setAmountBasketDevice(basketItem.device.id, amount);
+    await basket.setAmount(basketItem.id, amount);
+    checkAll(); 
+  }
 
-  useMemo(() => {
-    checkInfo(basketDeviceItem.device.id, amount);
-  }, [amount]);
-
-
-  const removeItem = async () => {
-    await delBasketDevice(basketDeviceItem.device.id);
-    checkInfo(basketDeviceItem.device.id, amount);
- }
+  const remove = async () => {
+    await delBasketDevice(basketItem.device.id)
+    await basket.removeBaskedDevice(basketItem.id);
+    checkAll(); 
+  }
 
   return (
     <Container className="basketDeviceItem" fluid="md">
@@ -31,35 +32,35 @@ const BasketDeviceItem = ({ basketDeviceItem, checkInfo }) => {
           <Col className="basketDeviceItem_cadr_space">
             <Image
               onClick={() =>
-                navigate(`${DEVICE_ROUTE}/${basketDeviceItem.device.id}`)
+                navigate(`${DEVICE_ROUTE}/${basketItem.device.id}`)
               }
               className="basketDeviceItem_cadr_img"
               rounded={true}
-              src={process.env.REACT_APP_API_URL + basketDeviceItem.device.img}
+              src={process.env.REACT_APP_API_URL + basketItem.device.img}
             ></Image>
           </Col>
           <Col xs={10} md={10} className="d-flex flex-column">
           <Row>
             <Col>
               <div>
-                <h6>{basketDeviceItem.device.name}</h6>
+                <h6>{basketItem.device.name}</h6>
               </div>
             </Col>
           </Row>
           <Row className='d-flex align-items-center'>
             <Col xs={6} md={7}className='align-items-stretch' >
-              <BlueCounter cn={'justify-content-end'} amount={amount} setAmount={setAmount} />
+              <BlueCounter cn={'justify-content-end'} amount={basketItem.amount} setAmount={setAmount} />
             </Col>
             <Col xs={4} md={4}>
               <div className='d-flex justify-content-center'>
                 <h6>
-                  {basketDeviceItem.device.price * amount}{' '}
+                  {basketItem.device.price * basketItem.amount}{' '}
                   {String.fromCodePoint(0x20bd)}
                 </h6>
               </div>
             </Col>
             <Col xs={2} md={1}>
-              <DeleteButton className='mb-3'  onClick={removeItem}/>
+              <DeleteButton className='mb-3' onClick={remove}/>
             </Col>
             </Row>
           </Col>
@@ -67,6 +68,6 @@ const BasketDeviceItem = ({ basketDeviceItem, checkInfo }) => {
       </Card>
     </Container>
   );
-};
+});
 
 export default BasketDeviceItem;

@@ -15,4 +15,12 @@ export default class basketStore {
         return this._basketDevice;
     }
 
+    setAmount(id, amount){
+        const index = this._basketDevice.rows.findIndex((b) => b.id == id)
+        this._basketDevice.rows[index].amount = amount;
+    }
+
+    removeBaskedDevice(id){
+        this._basketDevice.rows = this._basketDevice.rows.filter((b) => b.id != id)
+    }
 }

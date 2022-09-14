@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Nav, Spinner } from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 import { BrowserRouter } from 'react-router-dom';
 import { Context } from '.';
 import AppRouter from './components/AppRouter';
