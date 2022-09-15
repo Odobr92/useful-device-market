@@ -13,16 +13,21 @@ const BasketDeviceItem = observer(({basketItem, checkAll}) => {
   const navigate = useNavigate();
   const { basket } = useContext(Context);
 
-  const setAmount = async (amount) => {
-    await setAmountBasketDevice(basketItem.device.id, amount);
-    await basket.setAmount(basketItem.id, amount);
-    checkAll(); 
+  const setAmount = (amount) => {
+     setAmountBasketDevice(basketItem.device.id, amount).
+     then(async () => {
+      await basket.setAmount(basketItem.id, amount);
+      checkAll() 
+     })
+     
   }
 
-  const remove = async () => {
-    await delBasketDevice(basketItem.device.id)
-    await basket.removeBaskedDevice(basketItem.id);
-    checkAll(); 
+  const remove = () => {
+    delBasketDevice(basketItem.device.id)
+    .then(async () => {
+      await basket.removeBaskedDevice(basketItem.id)
+      checkAll() 
+    })
   }
 
   return (

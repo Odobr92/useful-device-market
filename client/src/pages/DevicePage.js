@@ -41,23 +41,23 @@ const DevicePage = observer(() => {
     });
   }, []);
 
-  const addBasket = async () => {
+  const addBasket = () => {
     if (user.isAuth) {
-      await addBasketDevice(device.id);
-      await isSetDeviceBasket(true);
+      addBasketDevice(device.id).then(() => {
+        isSetDeviceBasket(true)
+        setAmount(1);
+      });
     } else {
       alert('Для добавления товара необходима авторизация!');
     }
   };
 
-  const delBasket = async () => {
-    await delBasketDevice(device.id);
-    await isSetDeviceBasket(false);
+  const delBasket = () => {
+    delBasketDevice(device.id).then(() => isSetDeviceBasket(false));
   };
 
-  const updateAmount = async (amt) => {
-    setAmount(amt);
-    await setAmountBasketDevice(id, amt);
+  const updateAmount = (amt) => {
+    setAmountBasketDevice(id, amt).then(() => setAmount(amt));
   };
 
   return (

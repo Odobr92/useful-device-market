@@ -3,7 +3,7 @@ import { makeAutoObservable } from 'mobx';
 export default class typeStore {
     constructor(){
         this._type = []
-        this._selectedType = {id:1, name:''};
+        this._selectedType = {};
         makeAutoObservable(this);
     }
 

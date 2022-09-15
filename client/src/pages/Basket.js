@@ -17,7 +17,8 @@ const Basket = observer(() => {
     fetchBasketDevice()
       .then((data) => basket.setBasketDevice(data))
       .finally(() => {
-        setLoading(false);
+        checkAll()
+        setLoading(false)
       });
   }, []);
 
