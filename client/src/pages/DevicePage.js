@@ -16,6 +16,7 @@ import {
 import BlueCounter from '../components/UI/counters/BlueCounter';
 import RatingStar from '../components/UI/ratings/RatingStar';
 import { Context } from '..';
+import CastomButton from '../components/UI/button/CastomButton';
 
 const DevicePage = observer(() => {
   const { user } = useContext(Context);
@@ -69,11 +70,10 @@ const DevicePage = observer(() => {
               <Spinner animation="border" variant="primary" />
             ) : (
               <Image
-                fluid
-                width={410}
+              fluid
+                width={'90%'}
                 height={'auto'}
                 className="devicePageConteiner_row1_col_img"
-                rounded={true}
                 src={process.env.REACT_APP_API_URL + device.img}
               />
             )}
@@ -96,13 +96,13 @@ const DevicePage = observer(() => {
                     В корзине
                   </Button>
                   <BlueCounter
-                    cn={'ms-3'}
+                    className='ms-3'
                     amount={amount}
                     setAmount={updateAmount}
                   />
                 </div>
               ) : (
-                <Button onClick={() => addBasket()}>Добавить в корзину</Button>
+                <CastomButton onClick={() => addBasket()}>Добавить в корзину</CastomButton>
               )}
             </div>
           </Col>

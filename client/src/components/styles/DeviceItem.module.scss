@@ -1,21 +1,21 @@
 
-.card_device_list{
+.card{
     display: flex;
     justify-content: center;
     cursor: pointer;
     margin-top: 5%;
     padding: 5%;
-    box-shadow: 2px 1px 5px rgb(218, 217, 217);
+    box-shadow: 2px 1px 5px var(--device-item-card-shadow);
 }
 
-.card_device_list_space{
+.space_image{
     width:100%;
     padding-top:100%;
     overflow: visible;
     position: relative;
 }
 
-.card_device_list_space_img{
+.image{
     position:absolute;
     top:0;
     left:0;
@@ -25,7 +25,7 @@
     max-width: fit-content;
 }
 
-.card_device_list_info{
+.info{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,17 +33,21 @@
     margin-top: 1%;
 }
 
-.card_device_list_info_rating{
+.rating{
     display: flex;
 }
 
-.card_device_list_info_rating_star{
+.image_rating_star{
     margin-top: 20%;
 }
 
-.deviceItem_nameDevice{
+.name_device{
     display: flex;
     justify-content: flex-start;
     align-items:flex-start;
     height: 3rem;
+}
+
+.card_price{
+    margin: 1%;
 }

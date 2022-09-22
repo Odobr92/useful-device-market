@@ -1,9 +1,0 @@
-.text_info{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: rgba(30, 30, 30, 0.5);
-    margin-left: 10%;
-    margin-right: 10%;
-    height: 100px;
-}

@@ -9,6 +9,7 @@ const BrandBar = observer(() => {
     return (
          <ListGroup className="mt-3">
          {brand.brand.map((el) => <ListGroup.Item
+                className='listItem'
                 active={el.id === brand.selectedBrand.id}
                 onClick = {() => {
                     brand.selectedBrand.id !== el.id

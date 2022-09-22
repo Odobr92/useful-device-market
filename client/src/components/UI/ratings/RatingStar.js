@@ -4,6 +4,7 @@ import { Context } from '../../..';
 import { addRating } from '../../../http/ratingAPI';
 import '../../../styles/Rating.css';
 import '../../../styles/Stars.css';
+import CastomButton from '../button/CastomButton';
 
 const RatingStar = ({ id }) => {
   const { user } = useContext(Context);
@@ -122,9 +123,9 @@ const RatingStar = ({ id }) => {
           <i className="fas fa-star"></i>
         </label>
       </div>
-      <Button className="mt-4" onClick={creatRating}>
+      <CastomButton className="mt-4" onClick={creatRating}>
         Отправить
-      </Button>
+      </CastomButton>
     </div>
   );
 };

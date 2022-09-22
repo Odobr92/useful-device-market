@@ -6,6 +6,7 @@ import { fetchBasketDevice} from '../http/basketAPI';
 import '../styles/Basket.css';
 import { Spinner } from 'react-bootstrap';
 import { observer } from 'mobx-react-lite';
+import CastomButton from '../components/UI/button/CastomButton';
 
 const Basket = observer(() => {
   const { basket } = useContext(Context);
@@ -39,13 +40,17 @@ const Basket = observer(() => {
   return (
     <Container>
       <div className="basketSpace">
-        <h2>Корзина</h2>
+        <h2 className='basket_title'>Корзина</h2>
+        <hr />
         {loading ? (
           <Spinner animation="border" variant="primary" />
         ) : (
+          basket.basketDevice.rows.length > 0
+          ?
           basket.basketDevice.rows.map((b) => (
             <BasketDeviceItem key={b.id} basketItem={b} checkAll={checkAll}
             />))
+          :  <h4 className='d-flex justify-content-center m-5'>Корзина пуста!</h4> 
         )}
         <hr />
         <div className="d-flex align-items-end justify-content-between">
@@ -55,13 +60,13 @@ const Basket = observer(() => {
           </div>
         </div>
         <div className="basketSpace_next">
-          <Button
+          <CastomButton
             onClick={() => {
               alert('Спасибо за заказ но дальше нельзя!');
             }}
           >
             Перейти к оформлению
-          </Button>
+          </CastomButton>
         </div>
       </div>
     </Container>

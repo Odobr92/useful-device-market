@@ -1,6 +1,9 @@
 import React, { useState} from 'react';
-import { Modal, Button, Form } from 'react-bootstrap'
+import { Modal, Form } from 'react-bootstrap'
 import { createType } from '../http/typeAPI';
+import styles from './styles/CreateType.module.scss';
+import CastomButton from '../components/UI/button/CastomButton';
+import CustomButtonSuccess from '../components/UI/button/CustomButtonSuccess';
 
 const CreateType = ({show, onHide}) => {
 
@@ -14,10 +17,10 @@ const CreateType = ({show, onHide}) => {
 
     return (
         <Modal show={show}>
-        <Modal.Header>
+        <Modal.Header className={styles.header}>
           <Modal.Title>Добавить тип</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className={styles.body}>
         <Form>
             <Form.Control 
                 value={type}
@@ -26,13 +29,13 @@ const CreateType = ({show, onHide}) => {
             />
         </Form>
         </Modal.Body>
-        <Modal.Footer>
-        <Button variant="outline-primary" onClick={onHide}>
+        <Modal.Footer className={styles.footer}>
+        <CastomButton variant="outline-primary" onClick={onHide}>
             Закрыть
-          </Button>
-          <Button variant="outline-success" onClick={addType}>
+          </CastomButton>
+          <CustomButtonSuccess variant="outline-success" onClick={addType}>
             Добавить
-          </Button>
+          </CustomButtonSuccess>
         </Modal.Footer>
       </Modal>
     );

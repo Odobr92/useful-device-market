@@ -1,7 +1,7 @@
 import React from 'react';
 import { Nav } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import '../styles/NavFooter.css';
+import styles from './styles/NavFooter.module.scss';
 
 const NavFooter = () => {
   const myEmail =
@@ -18,12 +18,12 @@ const NavFooter = () => {
     >
       <Nav.Item>
         <Nav.Link href={mySource} eventKey={mySourseMessage}>
-          <FontAwesomeIcon icon="fa-brands fa-github" className="nav_icon" />
+          <FontAwesomeIcon icon="fa-brands fa-github" className={styles.nav_icon} />
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link href={myEmail} eventKey={myEmailMessage}>
-          <FontAwesomeIcon icon="fa-regular fa-envelope" className="nav_icon" />
+          <FontAwesomeIcon icon="fa-regular fa-envelope" className={styles.nav_icon} />
         </Nav.Link>
       </Nav.Item>
     </Nav>

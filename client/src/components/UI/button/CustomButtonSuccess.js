@@ -1,10 +1,9 @@
 import React from 'react';
-import styles from './CastomButton.module.scss';
+import styles from './CustomButtonSuccess.module.scss';
 
-const CastomButton = ({disabled, children, onClick, variant, ...props }) => {
+const CustomButtonSuccess = ({disabled, children, onClick, variant, ...props }) => {
   return (
     <div {...props} >
-      {console.log(styles)}
     {disabled
     ? (
         <button className={variant == 'outline' ? styles.btn_disable_outlie : styles.btn_disable}>{children}</button>
@@ -17,4 +16,4 @@ const CastomButton = ({disabled, children, onClick, variant, ...props }) => {
   );
 };
 
-export default CastomButton;
+export default CustomButtonSuccess;

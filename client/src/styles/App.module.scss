@@ -1,0 +1,21 @@
+
+.background{
+    background-color: var(--background-color);
+}
+
+.container{
+    background-color: var(--background-color-container);
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.text_info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(31, 31, 31, 0.5);
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 100px;
+}
+

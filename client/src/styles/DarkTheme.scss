@@ -1,0 +1,50 @@
+@mixin DarkTheme {
+  //Цвет главного фона
+  --background-color: rgb(195, 193, 194);
+
+  //Цвет контейнера
+  --background-color-container: rgb(223, 222, 222);
+
+  //Button standart
+  --button-color: rgb(206, 7, 117);
+  --button-color-active: rgb(152, 4, 85);
+  --button-color-disable: rgb(251, 116, 190);
+
+  //Button success
+  --button-color-success: rgb(26, 142, 88);
+  --button-color-success-active: rgb(18, 96, 59);
+  --button-color-success-disable: rgb(25, 135, 84);
+
+  //Button delete
+  --buttonDelete-color: rgb(206, 7, 117);
+
+  //Window info
+  --display-count-color: rgb(206, 7, 117);
+
+  //NavBar
+  --navBar-color: rgba(34, 33, 33, 0.908);
+  --navBar-shadow: inset 2px 2px 5px rgb(206, 7, 117);
+  --navBar-text-color-logo: rgb(245, 242, 244);
+  --navBar-text-color-item: rgb(252, 252, 252);
+
+  //Selector
+  --selector-color-active: rgb(206, 7, 117);
+  --selector-borderColor-active: rgb(247, 44, 156);
+
+  //Pagination
+  --pagination-color-active: rgb(206, 7, 117);
+  --pagination-boederColor-active: rgb(206, 7, 117);
+
+  //Icon
+  --icon-standart: rgba(30, 30, 30, 0.5);
+  --icon-standart-hover: rgb(206, 7, 117);
+
+  //Modal
+  --modal-window-header-color: rgb(65, 65, 65);
+  --modal-window-header-color-text: rgb(245, 242, 244);
+  --modal-window-body-color: rgb(227, 227, 227);
+  --modal-window-footer-color: rgb(214, 212, 212);
+
+    //Card device
+    --device-item-card-shadow: rgb(247, 164, 210);
+}

@@ -1,0 +1,13 @@
+@import 'DarkTheme.scss';
+@import 'LightTheme.scss';
+
+//Стандарная тема
+:root {
+  @include LightTheme;
+}
+
+//Темная тема
+:root[theme='dark'] {
+  @include DarkTheme;
+}
+

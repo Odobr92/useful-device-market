@@ -1,3 +1,13 @@
 .listItem{
  cursor: pointer
 }
+
+.list-group-item.active{
+    background-color: var(--selector-color-active);
+    border-color: var(--selector-borderColor-active);
+}
+
+.active>.page-link, .active>.page-link{
+    background-color: var(--pagination-color-active);
+    border-color: var(--pagination-boederColor-active);
+}

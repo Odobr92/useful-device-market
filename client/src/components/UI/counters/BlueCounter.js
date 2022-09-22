@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from 'react';
 import { Card } from 'react-bootstrap';
-import '../../../styles/BlueCounter.css'
 import CastomButton from '../button/CastomButton';
+import styles from './BlueCounter.module.scss';
 
-const BlueCounter = ({ amount, setAmount, limitMin = 1, limitMax = 15, cn = '' }) => {
+const BlueCounter = ({ amount, setAmount, limitMin = 1, limitMax = 15, ...props }) => {
   const [activeAmountMin, setActiveAmountMin] = useState(false);
   const [activeAmountMax, setActiveAmountMax] = useState(false);
 
@@ -13,7 +13,8 @@ const BlueCounter = ({ amount, setAmount, limitMin = 1, limitMax = 15, cn = '' }
   }, [amount]);
 
   return (
-    <div className={"blueCounter " + cn}>
+    <div {...props}>
+      <div className={styles.counterContainer}>
       <CastomButton
         disabled={activeAmountMin}
         onClick={() => setAmount(amount - 1)}
@@ -21,7 +22,7 @@ const BlueCounter = ({ amount, setAmount, limitMin = 1, limitMax = 15, cn = '' }
       >
         -
       </CastomButton>
-      <Card className="basketDeviceItem_data_amount_ind" border={'primary'}>
+      <Card className={styles.displayCount}>
         {amount}
       </Card>
       <CastomButton
@@ -31,6 +32,7 @@ const BlueCounter = ({ amount, setAmount, limitMin = 1, limitMax = 15, cn = '' }
       >
         +
       </CastomButton>
+      </div>
     </div>
   );
 };

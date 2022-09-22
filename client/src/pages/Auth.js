@@ -1,12 +1,14 @@
 import React, { useContext, useState } from 'react';
 import Container from 'react-bootstrap/esm/Container';
-import '../styles/Auth.css';
 import { Form, Card, Col, Button } from 'react-bootstrap';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { LOGIN_ROUTE, MAIN_ROUTE, REGISTRATION_ROUTE } from '../utils/consts';
 import { registration, login } from '../http/userAPI';
 import { observer } from 'mobx-react-lite';
 import { Context } from '..';
+import styles from './styles/Auth.module.scss';
+import CustomButtonSuccess from '../components/UI/button/CustomButtonSuccess';
+import CastomButton from '../components/UI/button/CastomButton';
 
 const Auth = observer( () => {
 
@@ -38,49 +40,51 @@ const Auth = observer( () => {
    }
 
   return (
-    <Container className="authConteiner">
-      <Card className="authCard">
+    <Container>
+    <div className={styles.authConteiner}>
+      <Card className={styles.authCard}>
         {isLocation
-        ?<h2 className="card_header">Авторизация</h2>
-        :<h2 className="card_header">Регистрация</h2>
+        ?<h2 className={styles.card_header}>Авторизация</h2>
+        :<h2 className={styles.card_header}>Регистрация</h2>
         }
-        <Form className="card_form">
+        <Form className={styles.card_form}>
           <Form.Control
-            className="card_form_control"
+            className={styles.card_form_control}
             placeholder="Введите логин..."
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <Form.Control
-            className="card_form_data"
+            className={styles.card_form_control}
             placeholder="Введите пароль..."
             type='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Col className="card_form_control">
+        </Form>
+        <Col className={styles.card_form_control}>
           {isLocation
-            ?<div className="card_form_control_reg">
+            ?<div className={styles.card_form_control_reg}>
                Нет акканута? <NavLink to={REGISTRATION_ROUTE}>Зарегестрируйся</NavLink>
              </div>
-            :<div className="card_form_control_reg">
+            :<div className={styles.card_form_control_reg}>
               Есть аккаунт? <NavLink to={LOGIN_ROUTE}>Войдите</NavLink>
              </div>
           }
           {isLocation
-          ?<Button onClick={click}
+          ?<CastomButton onClick={click}
             variant="outline-success">
             Войти
-          </Button>
-          :<Button onClick={click}
+          </CastomButton>
+          :<CastomButton onClick={click}
             variant="outline-primary">
             Зарегистрироваться
-          </Button>
+          </CastomButton>
           }
           </Col>
-        </Form>
       </Card>
-    </Container>
+      </div>
+      </Container>
   );
 });
 

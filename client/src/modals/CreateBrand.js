@@ -1,6 +1,9 @@
 import React, { useState} from 'react';
 import { Modal, Button, Form } from 'react-bootstrap'
+import CastomButton from '../components/UI/button/CastomButton';
+import CustomButtonSuccess from '../components/UI/button/CustomButtonSuccess';
 import { createBrand } from '../http/brandAPI';
+import styles from './styles/CreateType.module.scss';
 
 const CreateBrand = ({show, onHide}) => {
 
@@ -14,10 +17,10 @@ const CreateBrand = ({show, onHide}) => {
 
     return (
         <Modal show={show}>
-        <Modal.Header>
-          <Modal.Title>Добавить бренд</Modal.Title>
+        <Modal.Header className={styles.header}>
+          <Modal.Title styles={{backgraund: 'black'}}>Добавить бренд</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className={styles.body}>
         <Form>
             <Form.Control 
                 value={brand}
@@ -26,13 +29,13 @@ const CreateBrand = ({show, onHide}) => {
             />
         </Form>
         </Modal.Body>
-        <Modal.Footer>
-        <Button variant="outline-primary" onClick={onHide}>
+        <Modal.Footer className={styles.footer}>
+        <CastomButton onClick={onHide}>
             Закрыть
-          </Button>
-          <Button variant="outline-success" onClick={addBrand}>
+          </CastomButton>
+          <CustomButtonSuccess  onClick={addBrand}>
             Добавить
-          </Button>
+          </CustomButtonSuccess>
         </Modal.Footer>
       </Modal>
     );

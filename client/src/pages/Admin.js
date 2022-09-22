@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Button, Container, Row } from 'react-bootstrap';
+import { Col, Container } from 'react-bootstrap';
+import CastomButton from '../components/UI/button/CastomButton';
 import CreateBrand from '../modals/CreateBrand';
 import CreateDevice from '../modals/CreateDevice';
 import CreateType from '../modals/CreateType';
+import styles from './styles/Admin.module.scss';
 
 const Admin = () => {
 
@@ -13,17 +15,17 @@ const Admin = () => {
     return (
         <div>
             <Container>
-                <Row className='d-flex m-5'>
-                <Button onClick={() => setTypeVisible(true)} className='mt-3 p-2'>
+                <Col className={styles.column}>
+                <CastomButton onClick={() => setTypeVisible(true)} className={styles.button}>
                     Добавить Тип
-                </Button>
-                <Button onClick={() => setBrandVisible(true)} className='mt-3 p-2'>
+                </CastomButton>
+                <CastomButton onClick={() => setBrandVisible(true)} className={styles.button}>
                     Добавить Бренд
-                </Button>            
-                <Button onClick={() => setDeviceVisible(true)} className='mt-3 p-2'>
+                </CastomButton>            
+                <CastomButton onClick={() => setDeviceVisible(true)} className={styles.button}>
                     Добавить Устройство
-                </Button>
-                </Row>
+                </CastomButton>
+                </Col>
                 <CreateBrand show={brandVisible} onHide = {() => setBrandVisible(false)}/>
                 <CreateType show={typeVisible} onHide = {() => setTypeVisible(false)}/>
                 <CreateDevice show={deviceVisible} onHide = {() => setDeviceVisible(false)}/>

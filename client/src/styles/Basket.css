@@ -2,6 +2,10 @@
     margin-block-start: 3%;
 }
 
+.basket_title{
+    padding-top: 2%;
+}
+
 .basketSpace_next{
     margin-top: 2%;
     display: flex;

@@ -1,10 +1,10 @@
 import React from 'react';
-import '../../../styles/Button.css'
+import styles from './DeleteButton.module.scss';
 
 const DeleteButton = ({...props}) => {
     return (
         <div {...props}>
-          <div  className="cl-btn-7"></div>
+          <div className={styles.btn}></div>
         </div>
     );
 }

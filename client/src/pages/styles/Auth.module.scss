@@ -1,0 +1,36 @@
+.authConteiner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20%;
+    padding-top: 25%;
+}
+
+.authCard{
+    width: 600px;
+    padding: 5%;
+}
+
+.card_header{
+ margin: auto;
+ margin-bottom: 2%;
+}
+
+.card_form{
+    display: flex;
+    flex-direction: column;
+}
+
+.card_form_data{
+    margin-top: 3%;
+}
+
+.card_form_control{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3%;
+}
+
+.card_form_control_reg{
+    margin-top: 1%;
+}

@@ -53,8 +53,8 @@ const BasketDeviceItem = observer(({basketItem, checkAll}) => {
             </Col>
           </Row>
           <Row className='d-flex align-items-center'>
-            <Col xs={6} md={7}className='align-items-stretch' >
-              <BlueCounter cn={'justify-content-end'} amount={basketItem.amount} setAmount={setAmount} />
+            <Col xs={6} md={7} className='align-items-stretch' >
+              <BlueCounter className='justify-content-end' amount={basketItem.amount} setAmount={setAmount} />
             </Col>
             <Col xs={4} md={4}>
               <div className='d-flex justify-content-center'>

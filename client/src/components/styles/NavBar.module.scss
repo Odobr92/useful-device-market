@@ -1,0 +1,41 @@
+@import '../../styles/Index.scss';
+
+.nav {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 25px;
+  text-decoration: none;
+  background-color: var(--navBar-color);
+  box-shadow: var(--navBar-shadow-color);
+}
+
+.mainLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--navBar-text-color-logo);
+  font-size: large;
+  text-decoration: none;
+  margin: 9px;
+  font-size: 25px;
+}
+
+.navMenuItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--navBar-text-color-item);
+  font-size: large;
+  text-decoration: none;
+  font-size: 18px;
+  margin: 12px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1%;
+  color: rgb(217, 19, 148);
+  border-color: rgb(217, 19, 148);
+  font-size: 17px;
+}

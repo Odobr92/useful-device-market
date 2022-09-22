@@ -1,10 +1,13 @@
 import { observer } from 'mobx-react-lite';
 import React, { useContext, useEffect, useState } from 'react';
-import { Modal, Button, Form, Dropdown, Row, Col } from 'react-bootstrap';
+import { Modal, Button, Form, Dropdown, Row, Col, ButtonGroup } from 'react-bootstrap';
 import { Context } from '..';
 import { fetchBrand } from '../http/brandAPI';
 import { createDevice } from '../http/deviceAPI';
 import { fetchType } from '../http/typeAPI';
+import CastomButton from '../components/UI/button/CastomButton';
+import CustomButtonSuccess from '../components/UI/button/CustomButtonSuccess';
+import styles from './styles/CreateType.module.scss';
 
 const CreateDevice = observer(({ show, onHide }) => {
   const { type, brand } = useContext(Context);
@@ -24,7 +27,7 @@ const CreateDevice = observer(({ show, onHide }) => {
   };
 
   const remoutInfo = (infoNumber) => {
-    setInfo(info.filter(i => i.number !== infoNumber));
+    setInfo(info.filter((i) => i.number !== infoNumber));
   };
 
   const selectFile = (e) => {
@@ -32,32 +35,35 @@ const CreateDevice = observer(({ show, onHide }) => {
   };
 
   const changeInfo = (key, value, number) => {
-    setInfo(info.map(i => i.number === number ? {...i, [key]: value} : i))
-  }
+    setInfo(
+      info.map((i) => (i.number === number ? { ...i, [key]: value } : i))
+    );
+  };
 
   const addDevice = () => {
-    
-    const formData = new FormData()
-    formData.append('name', name)
-    formData.append('price', `${price}`)
-    formData.append('typeId', type.selectedType.id)
-    formData.append('brandId', brand.selectedBrand.id)
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('price', `${price}`);
+    formData.append('typeId', type.selectedType.id);
+    formData.append('brandId', brand.selectedBrand.id);
     console.log(img);
-    formData.append('img', img)
-    formData.append('info', JSON.stringify(info))
-    
-    createDevice(formData).then(() => alert(`Устройство "${name}" добавлено успешно!`))
-  }
+    formData.append('img', img);
+    formData.append('info', JSON.stringify(info));
+
+    createDevice(formData).then(() =>
+      alert(`Устройство "${name}" добавлено успешно!`)
+    );
+  };
 
   return (
     <Modal show={show}>
-      <Modal.Header>
+      <Modal.Header className={styles.header}>
         <Modal.Title>Добавить устройство</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className={styles.body}>
         <Form>
-          <Dropdown className="mt-2">
-            <Dropdown.Toggle>
+          <Dropdown>
+            <Dropdown.Toggle variant = {'secondary'}>
               {type.selectedType.name || 'Выберете тип'}
             </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -72,7 +78,7 @@ const CreateDevice = observer(({ show, onHide }) => {
             </Dropdown.Menu>
           </Dropdown>
           <Dropdown className="mt-2">
-            <Dropdown.Toggle>
+            <Dropdown.Toggle variant = {'secondary'}>
               {brand.selectedBrand.name || 'Выберете бренд'}
             </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -100,37 +106,48 @@ const CreateDevice = observer(({ show, onHide }) => {
             placeholder="Введите стоимость..."
           />
           <Form.Control className="mt-2" type="file" onChange={selectFile} />
-          <hr />
-          <Button variant={'outline-primary'} onClick={addInfo}>
-            Добавить характеристику
-          </Button>
-          {info.map((i) => (
-            <Row key={i.number} className="mt-2">
-              <Col md={15}>
-                <Form.Control value={i.title} onChange={(e) => changeInfo('title', e.target.value, i.number)} className="mt-2" placeholder="Введите название" />
-              </Col>
-              <Col md={15}>
-                <Form.Control value={i.description} onChange={(e) => changeInfo('description', e.target.value, i.number)} className="mt-2" placeholder="Введите значение" />
-              </Col>
-              <Col md={3}>
-                <Button className="mt-2"
-                  onClick={() => remoutInfo(i.number)}
-                  variant={'outline-danger'}
-                >
-                  Удалить
-                </Button>
-              </Col>
-            </Row>
-          ))}
         </Form>
+        <hr />
+        <CastomButton onClick={addInfo}>Добавить характеристику</CastomButton>
+        {info.map((i) => (
+          <Row key={i.number} className="mt-2">
+            <Col md={15}>
+              <Form.Control
+                value={i.title}
+                onChange={(e) => changeInfo('title', e.target.value, i.number)}
+                className="mt-2"
+                placeholder="Введите название"
+              />
+            </Col>
+            <Col md={15}>
+              <Form.Control
+                value={i.description}
+                onChange={(e) =>
+                  changeInfo('description', e.target.value, i.number)
+                }
+                className="mt-2"
+                placeholder="Введите значение"
+              />
+            </Col>
+            <Col md={3}>
+              <Button
+                className="mt-2"
+                onClick={() => remoutInfo(i.number)}
+                variant={'outline-danger'}
+              >
+                Удалить
+              </Button>
+            </Col>
+          </Row>
+        ))}
       </Modal.Body>
-      <Modal.Footer>
-        <Button variant="outline-primary" onClick={onHide}>
+      <Modal.Footer className={styles.footer}>
+        <CastomButton variant="outline-primary" onClick={onHide}>
           Закрыть
-        </Button>
-        <Button variant="outline-success" onClick={addDevice}>
+        </CastomButton>
+        <CustomButtonSuccess variant="outline-success" onClick={addDevice}>
           Добавить
-        </Button>
+        </CustomButtonSuccess>
       </Modal.Footer>
     </Modal>
   );
