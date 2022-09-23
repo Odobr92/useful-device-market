@@ -19,14 +19,16 @@ const NavBar = observer( () => {
   }
 
   useEffect(() => {
-    document.documentElement.removeAttribute("theme");
-    if(localStorage.getItem('theme') == 'D')
-      document.documentElement.setAttribute("theme", "dark");
-      setThemeMode(localStorage.getItem('theme'));
+    ActionTheme()
   }, [])
 
-  const NewTheme = () => {
-    if(document.documentElement.hasAttribute("theme")){
+  const ActionTheme = () => {
+    if(localStorage.getItem('theme') === null)
+    {
+      setThemeMode('L');
+      localStorage.setItem('theme', 'L');
+    }
+    else if(document.documentElement.hasAttribute("theme")){
       document.documentElement.removeAttribute("theme");
       setThemeMode('L');
       localStorage.setItem('theme', 'L');
@@ -36,7 +38,6 @@ const NavBar = observer( () => {
       setThemeMode('D');
       localStorage.setItem('theme', 'D');
     }
-    
   }
 
   return (
@@ -45,7 +46,7 @@ const NavBar = observer( () => {
         <NavLink className={styles.mainLogo} to={MAIN_ROUTE}>
           YoU Market
         </NavLink>
-        <CastomButton className={styles.button} onClick={NewTheme}>{themeMode}</CastomButton>
+        <CastomButton className={styles.button} onClick={ActionTheme}>{themeMode}</CastomButton>
         {user.isAuth ?
           <Nav className="mr-auto">
             <NavLink className={styles.navMenuItem} to={ADMIN_ROUTE}>
